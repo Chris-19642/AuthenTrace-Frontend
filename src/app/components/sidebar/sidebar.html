@@ -1,0 +1,17 @@
+<nav class="sidebar">
+  <ul *ngIf="rol === 'USER'">
+    <li><a [routerLink]="'/user/inicio'">Inicio</a></li>
+    <li><a [routerLink]="'/user/documentos'">Subir Documentos</a></li>
+    <li><a [routerLink]="'/user/reportes'">Reportes</a></li>
+    <li><a [routerLink]="'/user/grupos'">Grupos</a></li>
+    <li><a [routerLink]="'/user/soporte'">Soporte</a></li>
+  </ul>
+
+  <ul *ngIf="rol === 'ADMIN'">
+    <li><a [routerLink]="'/admin/inicio'">Inicio</a></li>
+    <li><a [routerLink]="'/admin/actualizaciones'">Actualizaciones</a></li>
+    <li><a [routerLink]="'/admin/reportes-uso'">Reportes de uso</a></li>
+    <li><a [routerLink]="'/admin/alertas'">Alertas</a></li>
+    <li><a [routerLink]="'/admin/accesos'">Accesos</a></li>
+  </ul>
+</nav>
