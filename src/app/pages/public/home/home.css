@@ -1,0 +1,259 @@
+/* ==============================
+   BASE GENERAL
+============================== */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #fff;
+}
+
+/* ==============================
+   SECCIÓN PRINCIPAL (HOME)
+============================== */
+.principal-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 95vh;
+  padding: 100px 70px 70px;
+  text-align: left;
+  /*background-image: url("assets/img/challenge.png");*/
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.principal-info h3 {
+  color: #161a1d;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+.Mayuscula {
+  color: #660708;
+  font-weight: 700;
+}
+
+.principal-info h1 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-family: "Advent Pro", sans-serif;
+}
+
+.principal-info p {
+  color: #161a1d;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 600px;
+  font-family: "Afacad", sans-serif;
+}
+
+.btn_submit {
+  background-color: #660708;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+}
+
+.btn_submit:hover {
+  background-color: #ba181b;
+}
+
+/* ==============================
+   SECCIÓN SERVICIOS
+============================== */
+.servicios-section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.servicios-titulo {
+  font-family: "Afacad", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #161a1d;
+}
+
+.servicios-texto {
+  font-family: "Advent Pro", sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.btn_iniciar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b1d2c;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn_iniciar:hover {
+  background-color: #ba181b;
+}
+
+.btn-icon {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.button-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.icono-group {
+  display: flex;
+  gap: 20px;
+}
+
+.icono img {
+  width: 40px;
+  height: 40px;
+}
+
+/* ==============================
+   SECCIÓN NOSOTROS
+============================== */
+.nosotros-section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px;
+  background-color: rgba(186, 24, 27, 0.15);
+}
+
+.nosotros-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nosotros-texto {
+  flex: 1;
+  font-size: 1.2rem;
+  margin-right: 30px;
+  font-family: "Afacad", sans-serif;
+  color: #161a1d;
+}
+
+.nosotros-texto strong {
+  color: #ba181b;
+}
+
+/* ==============================
+   SECCIÓN SOPORTE
+============================== */
+.soporte-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.soporte-titulo {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #161a1d;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+}
+
+.soporte-item {
+  display: inline-block;
+  width: 250px;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px;
+  transition: transform 0.3s ease;
+}
+
+.soporte-item:hover {
+  transform: translateY(-5px);
+}
+
+.soporte-item i {
+  font-size: 45px;
+  margin-bottom: 10px;
+  color: #ba181b;
+}
+
+.soporte-item h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+}
+
+.soporte-item p {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: "Inter", sans-serif;
+}
+
+.soporte-seguridad {
+  font-size: 1.8rem;
+  color: #ba181b;
+  margin-top: 50px;
+  font-family: "Advent Pro", sans-serif;
+  font-weight: bold;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .principal-section {
+    padding: 120px 30px 50px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .principal-info p {
+    max-width: 90%;
+  }
+
+  .nosotros-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nosotros-texto {
+    margin: 0 0 20px 0;
+  }
+
+  .soporte-item {
+    width: 80%;
+  }
+}

@@ -1,0 +1,15 @@
+[33m7ce60ba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/menu[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: reset: moving to 7ce60ba
+[33m8fb87da[m[33m ([m[1;31morigin/Frontend_v3[m[33m, [m[1;32mFrontend_v3[m[33m)[m HEAD@{1}: checkout: moving from feature/menu to feature/menu
+[33m8fb87da[m[33m ([m[1;31morigin/Frontend_v3[m[33m, [m[1;32mFrontend_v3[m[33m)[m HEAD@{2}: merge origin/Frontend_v3: Fast-forward
+[33m7ce60ba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/menu[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{3}: checkout: moving from Frontend_v3 to feature/menu
+[33m8fb87da[m[33m ([m[1;31morigin/Frontend_v3[m[33m, [m[1;32mFrontend_v3[m[33m)[m HEAD@{4}: checkout: moving from main to Frontend_v3
+[33m0d2b96b[m[33m ([m[1;32mmain[m[33m)[m HEAD@{5}: commit: Avance en configuracion angular
+[33m7ce60ba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/menu[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{6}: merge feature/menu: Fast-forward
+[33m3489ca0[m HEAD@{7}: checkout: moving from feature/menu to main
+[33m7ce60ba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/menu[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{8}: commit: Ajuste de navbar responsive y corrección de estilos
+[33m3489ca0[m HEAD@{9}: checkout: moving from main to feature/menu
+[33m3489ca0[m HEAD@{10}: checkout: moving from main to main
+[33m3489ca0[m HEAD@{11}: Branch: renamed refs/heads/main to refs/heads/main
+[33m3489ca0[m HEAD@{13}: Branch: renamed refs/heads/master to refs/heads/main
+[33m3489ca0[m HEAD@{15}: commit: Primera versión del frontend AuthenTrace
+[33me90bd2e[m HEAD@{16}: commit (initial): initial commit
