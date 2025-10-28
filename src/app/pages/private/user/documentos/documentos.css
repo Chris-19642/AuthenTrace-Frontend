@@ -1,0 +1,251 @@
+.documentos-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f5e6e8 0%, #d4a5a5 100%);
+  width: 100%;
+}
+
+
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-container {
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  max-width: 700px;
+  width: 100%;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.upload-title {
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.upload-area {
+  border: 3px dashed #ccc;
+  border-radius: 15px;
+  padding: 60px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: #fafafa;
+}
+
+.upload-area:hover {
+  border-color: #8b0000;
+  background: #fff5f5;
+}
+
+.upload-area.dragover {
+  border-color: #8b0000;
+  background: #fff0f0;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.2);
+}
+
+.upload-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.upload-icon:hover {
+  transform: scale(1.05);
+}
+
+.pdf-preview {
+  font-size: 48px;
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  background: #d32f2f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+  background: #b71c1c;
+}
+
+.upload-text {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.upload-text.secondary {
+  color: #999;
+  font-size: 14px;
+}
+
+.file-info {
+  color: #8b0000;
+  font-size: 14px;
+  margin-top: 20px;
+  font-weight: 500;
+  padding: 10px;
+  background: #fff5f5;
+  border-radius: 8px;
+  border-left: 4px solid #8b0000;
+}
+
+.select-file-btn {
+  background: white;
+  border: 2px solid #8b0000;
+  color: #8b0000;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.select-file-btn:hover {
+  background: #8b0000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
+.select-file-btn:active {
+  transform: translateY(0);
+}
+
+.verify-btn {
+  background: linear-gradient(135deg, #c62828 0%, #8b0000 100%);
+  color: white;
+  padding: 15px 60px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 30px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.verify-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
+}
+
+.verify-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.verify-btn:disabled {
+  background: linear-gradient(135deg, #ccc 0%, #999 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-area {
+    padding: 20px;
+  }
+
+  .upload-container {
+    padding: 30px 20px;
+  }
+
+  .upload-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .upload-area {
+    padding: 40px 20px;
+  }
+
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header-logo span {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-title {
+    font-size: 24px;
+  }
+
+  .upload-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pdf-preview {
+    font-size: 36px;
+  }
+
+  .select-file-btn {
+    padding: 10px 30px;
+    font-size: 14px;
+  }
+
+  .verify-btn {
+    padding: 12px 40px;
+    font-size: 16px;
+  }
+}

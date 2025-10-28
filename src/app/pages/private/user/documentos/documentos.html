@@ -1,1 +1,51 @@
-<p>documentos works!</p>
+<!-- documentos.html -->
+<div class="documentos-page">
+
+
+  <!-- Content Area -->
+  <div class="content-area">
+    <div class="upload-container">
+      <h1 class="upload-title">Cargar Documento</h1>
+
+      <div class="upload-area"
+           [class.dragover]="isDragging"
+           (dragover)="onDragOver($event)"
+           (dragleave)="onDragLeave($event)"
+           (drop)="onDrop($event)">
+
+        <div class="upload-icon" [class.has-file]="selectedFile">
+          <div class="pdf-preview">PDF</div>
+          @if (selectedFile) {
+            <div class="close-btn" (click)="clearFile($event)">×</div>
+          }
+        </div>
+
+        <p class="upload-text">Arrastra y suelta tu archivo aquí</p>
+        <p class="upload-text secondary">o</p>
+
+        <button class="select-file-btn" type="button" (click)="fileInput.click()">
+          Seleccionar Archivo
+        </button>
+
+        @if (selectedFile) {
+          <p class="file-info">
+            Archivo seleccionado: {{ selectedFile.name }}
+          </p>
+        }
+
+        <input #fileInput
+               type="file"
+               accept=".pdf"
+               (change)="onFileSelected($event)"
+               style="display: none">
+      </div>
+
+      <button class="verify-btn"
+              type="button"
+              [disabled]="!selectedFile"
+              (click)="verifySignature()">
+        VERIFICAR FIRMA
+      </button>
+    </div>
+  </div>
+</div>
