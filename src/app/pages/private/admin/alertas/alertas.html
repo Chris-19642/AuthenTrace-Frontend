@@ -1,1 +1,52 @@
-<p>alertas works!</p>
+<div class="alertas-container">
+  <h1 class="alertas-title">Alertas</h1>
+  <div class="filtro-section">
+    <label class="filtro-label">Filtro de Alertas</label>
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar alertas..."
+        [(ngModel)]="filtroTexto"
+        (input)="filtrarAlertas()">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+    </div>
+  </div>
+
+  <div class="alertas-table-container">
+    <table class="alertas-table">
+      <thead>
+      <tr>
+        <th class="col-fecha">Fecha</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-estado">Estado</th>
+        <th class="col-accion"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let alerta of alertasFiltradas" [class]="'alerta-row ' + getRowClass(alerta)">
+        <td class="col-fecha">
+          <div class="fecha-container">
+            <span class="fecha-text">{{ alerta.fecha }}</span>
+          </div>
+        </td>
+        <td class="col-tipo">
+          <div class="tipo-container">
+            <span class="indicator" [class]="'indicator-' + alerta.tipo.toLowerCase()"></span>
+            <span>{{ alerta.tipo }}</span>
+          </div>
+        </td>
+        <td class="col-estado">{{ alerta.estado }}</td>
+        <td class="col-accion">
+          <button class="btn-investigar" (click)="investigar(alerta.id)">
+            investigar
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

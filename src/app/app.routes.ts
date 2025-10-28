@@ -18,10 +18,10 @@ import { Reportes } from './pages/private/user/reportes/reportes';
 import { Grupos } from './pages/private/user/grupos/grupos';
 
 // Páginas privadas (admin)
-import { InicioAdmin } from './pages/private/admin/inicio/inicio';
+import { InicioComponent } from './pages/private/admin/inicio/inicio';
 import { Actualizaciones } from './pages/private/admin/actualizaciones/actualizaciones';
 import { ReportesUso } from './pages/private/admin/reportes-uso/reportes-uso';
-import { Alertas } from './pages/private/admin/alertas/alertas';
+import { AlertasComponent } from './pages/private/admin/alertas/alertas';
 import { Accesos } from './pages/private/admin/accesos/accesos';
 
 export const routes: Routes = [
@@ -52,13 +52,17 @@ export const routes: Routes = [
     path: 'admin',
     component: PrivateLayout,
     children: [
-      { path: 'inicio', component: InicioAdmin },
+      { path: 'inicio', component: InicioComponent },
       { path: 'actualizaciones', component: Actualizaciones },
       { path: 'reportes-uso', component: ReportesUso },
-      { path: 'alertas', component: Alertas },
+      { path: 'alertas', component: AlertasComponent },
       { path: 'accesos', component: Accesos },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     ],
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: '',
+    redirectTo: '/admin/alertas',
+    pathMatch: 'full'
+  }
 ];
