@@ -1,8 +1,31 @@
 <nav class="navbar">
-  <a [routerLink]="'/'">Home</a> |
-  <a [routerLink]="'/nosotros'">Nosotros</a> |
-  <a [routerLink]="'/servicios'">Servicios</a> |
-  <a [routerLink]="'/soporte'">Soporte</a> |
-  <a [routerLink]="'/login'">Iniciar Sesión</a> |
+  <a routerLink="/" class="logo">
+    <img src="assets/img/logo_at.png" alt="AuthenTrace" />
+  </a>
+
+  <button class="open-menu" aria-label="Abrir menú" (click)="toggleMenu()">
+    <img src="assets/img/hamburger-icon.svg" alt="Abrir menú" />
+  </button>
+
+  <ul class="menu-horizontal" [class.active]="menuAbierto">
+    <button class="close-menu" aria-label="Cerrar menú" (click)="toggleMenu()">
+      <img src="assets/img/close-icon.svg" alt="Cerrar menú" />
+    </button>
+    <li>
+      <a [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="toggleMenu()">HOME</a>
+    </li>
+    <li>
+      <a [routerLink]="'/nosotros'" routerLinkActive="active" (click)="toggleMenu()">NOSOTROS</a>
+    </li>
+    <li>
+      <a [routerLink]="'/servicios'" routerLinkActive="active" (click)="toggleMenu()">SERVICIOS</a>
+    </li>
+    <li>
+      <a [routerLink]="'/soporte'" routerLinkActive="active" (click)="toggleMenu()">SOPORTE</a>
+    </li>
+    <li>
+      <a [routerLink]="'/login'" routerLinkActive="active" class="iniciar-sesion-link" (click)="toggleMenu()">INICIAR SESIÓN</a>
+    </li>
+  </ul>
 </nav>
 
