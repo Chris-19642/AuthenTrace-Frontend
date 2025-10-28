@@ -1,0 +1,209 @@
+.actualizaciones-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contenido-principal {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.mensaje {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  animation: slideDown 0.3s ease;
+}
+
+.mensaje-exito {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensaje-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.seccion-actualizaciones {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seccion-actualizaciones h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #8b4444;
+}
+
+
+.tabla-actualizaciones {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla-actualizaciones thead {
+  background-color: #f8f9fa;
+}
+
+.tabla-actualizaciones th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.tabla-actualizaciones td {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tabla-actualizaciones tbody tr {
+  transition: background-color 0.2s;
+}
+
+.tabla-actualizaciones tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+
+.estado-pendiente {
+  color: #856404;
+  font-weight: 500;
+}
+
+.estado-aplicada {
+  color: #155724;
+  font-weight: 500;
+}
+
+
+.seccion-programacion {
+  display: flex;
+  align-items: flex-end;
+  gap: 60px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selector-fecha {
+  flex: 1;
+  max-width: 300px;
+}
+
+.selector-fecha label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-fecha {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input-fecha:focus {
+  outline: none;
+  border-color: #8b4444;
+}
+
+
+.btn-programar {
+  padding: 12px 30px;
+  background-color: #c74444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-programar:hover:not(:disabled) {
+  background-color: #a33939;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(199, 68, 68, 0.3);
+}
+
+.btn-programar:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-programar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+
+@media (max-width: 768px) {
+  .seccion-programacion {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .selector-fecha {
+    max-width: 100%;
+  }
+
+  .btn-programar {
+    width: 100%;
+  }
+
+  .tabla-actualizaciones {
+    font-size: 14px;
+  }
+
+  .tabla-actualizaciones th,
+  .tabla-actualizaciones td {
+    padding: 10px;
+  }
+}
