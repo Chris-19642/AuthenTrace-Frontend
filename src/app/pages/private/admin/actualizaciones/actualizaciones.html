@@ -1,1 +1,66 @@
-<p>actualizaciones works!</p>
+<div class="actualizaciones-container">
+  <div class="contenido-principal">
+
+    <div *ngIf="mensajeExito" class="mensaje mensaje-exito">
+      {{ mensajeExito }}
+    </div>
+    <div *ngIf="mensajeError" class="mensaje mensaje-error">
+      {{ mensajeError }}
+    </div>
+
+
+    <div class="seccion-actualizaciones">
+      <h2>Actualizaciones pendientes</h2>
+
+      <div *ngIf="cargando" class="loading">Cargando...</div>
+
+      <table *ngIf="!cargando" class="tabla-actualizaciones">
+        <thead>
+        <tr>
+          <th>Versión</th>
+          <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let actualizacion of actualizaciones">
+          <td>Version {{ actualizacion.version }}</td>
+          <td>
+              <span [ngClass]="obtenerClaseEstado(actualizacion.estado)">
+                {{ actualizacion.estado }}
+                <span *ngIf="actualizacion.fechaAplicacion">
+                  el {{ actualizacion.fechaAplicacion }}
+                </span>
+              </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="!cargando && actualizaciones.length === 0" class="sin-datos">
+        No hay actualizaciones disponibles
+      </div>
+    </div>
+
+
+    <div class="seccion-programacion">
+      <div class="selector-fecha">
+        <label for="fecha">Fecha</label>
+        <input
+          type="date"
+          id="fecha"
+          [(ngModel)]="fechaSeleccionada"
+          [min]="fechaSeleccionada"
+          class="input-fecha"
+        />
+      </div>
+
+      <button
+        class="btn-programar"
+        (click)="programarActualizacion()"
+        [disabled]="cargando"
+      >
+        {{ cargando ? 'Programando...' : 'Programar Actualización' }}
+      </button>
+    </div>
+  </div>
+</div>
