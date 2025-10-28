@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,5 +12,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-  rol = 'USER'; // o 'ADMIN'
+  rol = 'ADMIN'; // o 'ADMIN'
 }
