@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-documentos',
@@ -13,21 +12,21 @@ export class Documentos {
 
   constructor() {}
 
-  // Manejar drag over
+  //drag over
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
     this.isDragging = true;
   }
 
-  // Manejar drag leave
+  //drag leave
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
     this.isDragging = false;
   }
 
-  // Manejar drop
+  //drop
   onDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -39,7 +38,7 @@ export class Documentos {
     }
   }
 
-  // Manejar selección de archivo
+  // Manejar selección
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -58,21 +57,17 @@ export class Documentos {
     }
   }
 
-  // Limpiar archivo seleccionado
+  // Limpiar archivo
   clearFile(event: Event): void {
     event.stopPropagation();
     this.selectedFile = null;
     console.log('Archivo eliminado');
   }
 
-  // Verificar firma del documento
+  // Verificar
   verifySignature(): void {
     if (this.selectedFile) {
       console.log('Verificando firma del archivo:', this.selectedFile.name);
-
-      // Aquí iría la lógica para verificar la firma
-      // Por ejemplo, llamar a un servicio:
-      // this.documentService.verifySignature(this.selectedFile).subscribe(...)
 
       alert(`Verificando firma del archivo: ${this.selectedFile.name}`);
     }
