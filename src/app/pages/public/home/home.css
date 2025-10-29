@@ -4,10 +4,9 @@
 html, body {
   height: 100%;
   width: 100%;
-  margin: 0;
   padding: 0;
-  font-family: "Inter", sans-serif;
-  background-color: #fff;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 /* ==============================
@@ -19,18 +18,17 @@ html, body {
   justify-content: center;
   align-items: flex-start;
   min-height: 95vh;
-  padding: 100px 70px 70px;
+  padding: 0 5% 70px;
   text-align: left;
-  /*background-image: url("assets/img/challenge.png");*/
+  background-image: url("/assets/img/challenge.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
 }
-
 .principal-info h3 {
   color: #161a1d;
   font-weight: bold;
-  font-size: 28px;
+  font-size: clamp(20px, 2vw, 32px);
   margin-bottom: 20px;
   font-family: "M PLUS Rounded 1c", sans-serif;
 }
@@ -42,14 +40,14 @@ html, body {
 
 .principal-info h1 {
   color: #333;
-  font-size: 22px;
+  font-size: clamp(18px, 1.8vw, 26px);
   margin-bottom: 15px;
   font-family: "Advent Pro", sans-serif;
 }
 
 .principal-info p {
   color: #161a1d;
-  font-size: 16px;
+  font-size: clamp(14px, 1.2vw, 18px);
   line-height: 1.6;
   max-width: 600px;
   font-family: "Afacad", sans-serif;
@@ -77,7 +75,6 @@ html, body {
    SECCIÓN SERVICIOS
 ============================== */
 .servicios-section {
-  width: 100%;
   margin: 0 auto;
   padding: 60px 20px;
   background-color: #ffffff;
@@ -144,10 +141,10 @@ html, body {
    SECCIÓN NOSOTROS
 ============================== */
 .nosotros-section {
-  width: 100%;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 60px 5%;
   background-color: rgba(186, 24, 27, 0.15);
+  box-sizing: border-box;
 }
 
 .nosotros-info {
@@ -155,6 +152,8 @@ html, body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 30px;
+  margin: 0 auto;
 }
 
 .nosotros-texto {
@@ -167,6 +166,13 @@ html, body {
 
 .nosotros-texto strong {
   color: #ba181b;
+}
+.nosotros-info img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  flex: 1 1 400px;
+  object-fit: contain;
 }
 
 /* ==============================
@@ -188,7 +194,9 @@ html, body {
 
 .soporte-item {
   display: inline-block;
+  vertical-align: top;
   width: 250px;
+  height: 180px;
   background-color: #fff;
   text-decoration: none;
   border-radius: 10px;
@@ -197,6 +205,7 @@ html, body {
   margin: 15px;
   transition: transform 0.3s ease;
 }
+
 
 .soporte-item:hover {
   transform: translateY(-5px);
@@ -235,9 +244,9 @@ html, body {
 ============================== */
 @media (max-width: 768px) {
   .principal-section {
-    padding: 120px 30px 50px;
+    padding: 1px 30px 50px;
     align-items: center;
-    text-align: center;
+    text-align: left;
   }
 
   .principal-info p {
@@ -255,5 +264,6 @@ html, body {
 
   .soporte-item {
     width: 80%;
+    height: auto;
   }
 }

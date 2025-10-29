@@ -1,0 +1,137 @@
+.footer {
+  background-color: #263238;
+  color: #f5f7fa;
+  padding: 50px 10%;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Columna 1 */
+.footer-company {
+  flex: 1 1 250px;
+}
+
+.footer-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 10px;
+  transform: scale(1.5);
+  transform-origin: left ;
+}
+
+.copyright {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.follow {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.social-links a {
+  color: #ffffff;
+  opacity: 0.7;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+  opacity: 1;
+}
+
+/* Columna 2 */
+.footer-links {
+  flex: 2 1 400px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-links h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+.footer-links a {
+  color: #f5f7fa;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+/* Columna 3 */
+.footer-newsletter {
+  flex: 1 1 250px;
+}
+
+.footer-newsletter h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.newsletter-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.newsletter-box input {
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+}
+
+.newsletter-box input::placeholder {
+  color: #d9dbe1;
+}
+
+.newsletter-box button {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
