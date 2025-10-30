@@ -1,0 +1,32 @@
+<section class="submit-container">
+  <div class="submit-card">
+    <h1 class="submit-title">CREAR CUENTA</h1>
+
+    <form>
+      <label for="name">Nombres:</label>
+      <input type="text" id="name" placeholder="Ingrese su nombre completo" required />
+
+      <label for="first-name">Apellidos:</label>
+      <input type="text" id="first-name" placeholder="Ingrese su apellidos" required />
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" placeholder="Ingrese su correo" required />
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" placeholder="Ingrese su contraseña" required />
+
+      <p class="terms">
+        Al continuar, acepta nuestros
+        <a href="#">Términos y Condiciones</a> y
+        <a href="#">Política de privacidad</a>.
+      </p>
+
+      <button type="submit" class="btn-submit">Registrarse</button>
+
+      <p class="login-link">
+        ¿Ya tienes una cuenta?
+        <a routerLink="/login" class="register-link">Iniciar Sesión</a>
+      </p>
+    </form>
+  </div>
+</section>

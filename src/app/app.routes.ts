@@ -23,6 +23,7 @@ import { Actualizaciones } from './pages/private/admin/actualizaciones/actualiza
 import { ReportesUso } from './pages/private/admin/reportes-uso/reportes-uso';
 import { AlertasComponent } from './pages/private/admin/alertas/alertas';
 import { Accesos } from './pages/private/admin/accesos/accesos';
+import {CrearCuenta} from './pages/public/crear-cuenta/crear-cuenta';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
       { path: 'servicios', component: Servicios },
       { path: 'soporte', component: Soporte },
       { path: 'login', component: Login },
+      { path: 'crear-cuenta', component: CrearCuenta },
     ],
   },
   {

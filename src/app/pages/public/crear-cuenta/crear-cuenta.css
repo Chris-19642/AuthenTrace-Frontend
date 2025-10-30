@@ -1,0 +1,144 @@
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+.submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: url("/assets/img/mask_group.svg") no-repeat center center/cover;
+  padding: 30px;
+  margin-top: 70px;
+}
+
+/* ==========================
+   TARJETA
+========================== */
+.submit-card {
+
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 50px 60px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ==========================
+   TÍTULO
+========================== */
+.submit-title {
+  margin-top: 2px;
+  color: #660708;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+/* ==========================
+   FORMULARIO
+========================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #394149;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #660708;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 5px rgba(102, 7, 8, 0.4);
+}
+
+/* ==========================
+   TÉRMINOS Y CONDICIONES
+========================== */
+.terms {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #394149;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.terms a {
+  color: #660708;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+  color: #ba181b;
+}
+
+/* ==========================
+   BOTÓN REGISTRARSE
+========================== */
+.btn-submit {
+  background-color: #8b1d2c;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #ba181b;
+}
+
+/* ==========================
+   LINK DE LOGIN
+========================== */
+.login-link {
+  margin-top: 15px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #394149;
+  margin-block-end: 1px;
+}
+
+.login-link a {
+  color: #ba181b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media (max-width: 768px) {
+  .submit-card {
+    padding: 40px 25px;
+  }
+
+  .submit-title {
+    font-size: 26px;
+  }
+}

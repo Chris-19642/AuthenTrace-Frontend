@@ -1,0 +1,136 @@
+/* ============================
+   CONTENEDOR GENERAL
+============================ */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("/assets/img/mask_group.svg");
+  padding: 30px;
+  background-position: center;
+}
+
+
+/* ============================
+   TARJETA DE LOGIN
+============================ */
+.login-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 50px 60px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ============================
+   TÍTULO
+============================ */
+.login-title {
+  color: #660708;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* ============================
+   FORMULARIO
+============================ */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #394149;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #660708;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  box-shadow: 0 0 5px rgba(102, 7, 8, 0.4);
+}
+
+/* ============================
+   CHECKBOX
+============================ */
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #394149;
+  margin-top: 10px;
+}
+
+/* ============================
+   BOTÓN
+============================ */
+.btn-login {
+  background-color: #8b1d2c;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #ba181b;
+}
+
+/* ============================
+   ENLACE CREAR CUENTA
+============================ */
+.register-text {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #394149;
+}
+
+.register-link {
+  color: #660708;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+  color: #ba181b;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 40px 25px;
+  }
+
+  .login-title {
+    font-size: 26px;
+  }
+}
