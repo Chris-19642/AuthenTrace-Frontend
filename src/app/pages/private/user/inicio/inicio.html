@@ -1,1 +1,82 @@
-<p>inicio works!</p>
+<!-- ==================== HEADER ==================== -->
+<div class="dashboard-container">
+  <h1 class="welcome-title">Bienvenido Usuario 1</h1>
+
+  <!-- ==================== FILA SUPERIOR: TARJETA DE DOCUMENTOS + GRÁFICO ==================== -->
+  <div class="top-section">
+
+    <!-- TARJETA: DOCUMENTOS SUBIDOS -->
+    <div class="documentos-card">
+      <div class="card-label">DOCUMENTOS SUBIDOS</div>
+      <div class="card-number">{{ documentosSubidos }}</div>
+    </div>
+
+    <!-- GRÁFICO: PIE CHART -->
+    <div class="grafico-container">
+      <mat-card class="chart-card">
+        <div class="pie-chart-wrapper">
+          <!-- TODO: Reemplazar con datos reales del backend -->
+          <svg viewBox="0 0 200 200" class="pie-svg">
+            <!-- Segmento 1: Firmas válidas (75%) - Verde claro (abajo izquierda y fondo) -->
+            <path d="M 100,100 L 100,20 A 80,80 0 0,1 180,100 A 80,80 0 0,1 100,180 A 80,80 0 0,1 20,100 A 80,80 0 0,1 100,20 Z" fill="#C8E6C9" stroke="none"/>
+
+            <!-- Segmento 2: Fraude detectado (25%) - Rojo (arriba derecha) -->
+            <path d="M 100,100 L 173.21,64.55 A 80,80 0 0,0 100,20 Z" fill="#B8646B" stroke="none"/>
+
+            <!-- TEXTO: 75% (en verde) - Centro izquierda -->
+            <text x="65" y="105" class="pie-percentage-verde" text-anchor="middle">75%</text>
+            <text x="65" y="118" class="pie-label-verde" text-anchor="middle">Firmas válidas</text>
+
+            <!-- TEXTO: 25% (en rojo) - Más al centro del sector rojo -->
+            <text x="128" y="50" class="pie-percentage-rojo" text-anchor="middle">25%</text>
+            <text x="128" y="60" class="pie-label-rojo" text-anchor="middle">Fraude</text>
+            <text x="128" y="70" class="pie-label-rojo" text-anchor="middle">detectado</text>
+          </svg>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- ==================== ÚLTIMAS VERIFICACIONES ==================== -->
+  <div class="verificaciones-section">
+    <h2 class="section-title">Últimas verificaciones</h2>
+
+    <mat-card class="table-card">
+      <table class="verification-table">
+        <tbody>
+        <!-- TODO: Reemplazar *ngFor con datos reales del backend -->
+        <!-- GET /api/documentos/ultimas-verificaciones -->
+        <!-- Estructura: { documentos: [{id, nombre, estado, fecha}] } -->
+        <tr *ngFor="let doc of ultimasVerificaciones; let last = last"
+            [ngClass]="{'border-bottom': !last}">
+
+          <!-- COLUMNA: ICONO + NOMBRE -->
+          <td class="cell-documento">
+            <mat-icon class="documento-icon">description</mat-icon>
+            <span class="documento-nombre">{{ doc.nombre }}</span>
+          </td>
+
+          <!-- COLUMNA: ESTADO -->
+          <td class="cell-estado">
+            <div class="estado-badge" [ngClass]="getEstadoBadgeClass(doc.estado)">
+              <mat-icon class="estado-icon">
+                {{ doc.estado === 'válido' ? 'check_circle' : 'cancel' }}
+              </mat-icon>
+              <span class="estado-texto">
+                  {{ doc.estado === 'válido' ? 'Válido' : 'Falso' }}
+                </span>
+            </div>
+          </td>
+
+          <!-- COLUMNA: FECHA -->
+          <td class="cell-fecha">
+            <!-- TODO: Formatear fecha con pipe date de Angular: {{ doc.fecha | date:'dd/MM/yyyy HH:mm' }} -->
+            {{ doc.fecha }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+
+</div>

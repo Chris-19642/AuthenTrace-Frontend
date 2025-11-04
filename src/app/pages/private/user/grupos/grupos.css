@@ -1,0 +1,307 @@
+/* ==================== CONTENEDOR PRINCIPAL ==================== */
+.grupos-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==================== HEADER ==================== */
+.grupos-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #BA181B;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+/* ==================== BUSCADOR ==================== */
+.search-wrapper {
+  position: relative;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999999;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  background-color: #ffffff;
+}
+
+.search-input:focus {
+  border-color: #c85c5c;
+  box-shadow: 0 0 0 2px rgba(200, 92, 92, 0.1);
+}
+
+.search-input::placeholder {
+  color: #7D7979;
+}
+
+/* ==================== GRID DE GRUPOS ==================== */
+.grupos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* ==================== TARJETA DE GRUPO ==================== */
+.grupo-card {
+  background: linear-gradient(135deg, #660708 0%, #660708 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grupo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.grupo-nombre {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.grupo-cantidad {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 16px 0 0 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ==================== TARJETA: CREAR GRUPO ==================== */
+.crear-grupo-card {
+  background: linear-gradient(135deg, #660708 0%, #660708 100%);
+  justify-content: center;
+  align-items: center;
+}
+
+.crear-grupo-btn {
+  background-color: rgba(186, 24, 27, 60);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+}
+
+.crear-grupo-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.crear-grupo-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+
+/* ==================== MODAL ==================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  margin: 0 0 24px 0;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.modal-input:focus {
+  border-color: #c85c5c;
+  box-shadow: 0 0 0 2px rgba(200, 92, 92, 0.1);
+}
+
+.modal-input::placeholder {
+  color: #999999;
+}
+
+/* ==================== BOTONES MODAL ==================== */
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-btn-cancelar,
+.modal-btn-crear {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-btn-cancelar {
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+.modal-btn-cancelar:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-btn-crear {
+  background-color: #c85c5c;
+  color: white;
+}
+
+.modal-btn-crear:hover {
+  background-color: #b84f4f;
+}
+
+/* ==================== RESPONSIVO ==================== */
+@media (max-width: 1024px) {
+  .grupos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grupos-container {
+    padding: 24px;
+  }
+
+  .grupos-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .grupos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  .grupo-card {
+    padding: 16px;
+    min-height: 160px;
+  }
+
+  .grupo-nombre {
+    font-size: 16px;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grupos-container {
+    padding: 16px;
+  }
+
+  .grupos-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .grupos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .grupo-card {
+    padding: 12px;
+    min-height: 140px;
+  }
+
+  .grupo-nombre {
+    font-size: 14px;
+  }
+
+  .grupo-cantidad {
+    font-size: 11px;
+  }
+
+  .crear-grupo-btn {
+    width: 50px;
+    height: 50px;
+  }
+}
