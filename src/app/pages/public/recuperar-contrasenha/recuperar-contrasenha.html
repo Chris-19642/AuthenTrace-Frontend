@@ -1,0 +1,33 @@
+<div class="container">
+  <a (click)="volverInicio()" class="back-button">
+    <span class="back-arrow">←</span>
+    <span>Volver al inicio</span>
+  </a>
+
+  <div class="steps">
+    <div class="step active">1</div>
+    <div class="step-line"></div>
+    <div class="step inactive">2</div>
+  </div>
+
+  <h1>Recupera tu contraseña</h1>
+  <p class="subtitle">Ingresá el correo registrado para enviarte un código de verificación</p>
+
+  <form (ngSubmit)="enviarCodigo()">
+    <div class="form-group">
+      <label for="email">Correo electrónico</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Pacox123@gmail.com"
+        required
+      >
+    </div>
+
+    <button type="submit" class="submit-button">
+      Enviar código
+    </button>
+  </form>
+</div>

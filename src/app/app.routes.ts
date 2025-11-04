@@ -24,6 +24,8 @@ import { ReportesUso } from './pages/private/admin/reportes-uso/reportes-uso';
 import { AlertasComponent } from './pages/private/admin/alertas/alertas';
 import { Accesos } from './pages/private/admin/accesos/accesos';
 import {CrearCuenta} from './pages/public/crear-cuenta/crear-cuenta';
+import {RecuperarContrasenha} from './pages/public/recuperar-contrasenha/recuperar-contrasenha';
+import {ReiniciarContrasenha} from './pages/public/reiniciar-contrasenha/reiniciar-contrasenha';
 
 export const routes: Routes = [
   {
@@ -36,6 +38,8 @@ export const routes: Routes = [
       { path: 'soporte', component: Soporte },
       { path: 'login', component: Login },
       { path: 'crear-cuenta', component: CrearCuenta },
+      { path: 'recuperar-contrasenha', component: RecuperarContrasenha },
+      { path: 'reiniciar-contrasenha', component: ReiniciarContrasenha },
     ],
   },
   {

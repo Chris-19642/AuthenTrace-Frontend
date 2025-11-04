@@ -1,0 +1,84 @@
+<div class="container">
+  <a (click)="volverInicio()" class="back-button">
+    <span class="back-arrow">←</span>
+    <span>Volver al inicio</span>
+  </a>
+
+  <div class="steps">
+    <div class="step completed">✓</div>
+    <div class="step-line"></div>
+    <div class="step active">2</div>
+  </div>
+
+  <form (ngSubmit)="cambiarContrasenha()">
+    <h1>Crear nueva contraseña</h1>
+    <p class="subtitle">
+      Ingresá el código que te enviamos a <strong>{{ email }}</strong> y creá tu nueva contraseña
+    </p>
+
+
+    <div class="codigo-container">
+      @for (item of codigo; track $index; let i = $index) {
+        <input
+          type="text"
+          [id]="'codigo-' + i"
+          class="codigo-input"
+          maxlength="1"
+          [(ngModel)]="codigo[i]"
+          [name]="'codigo-' + i"
+          (input)="onCodigoInput(i, $event)"
+          (keydown)="onCodigoKeydown(i, $event)"
+          pattern="[0-9]"
+          required
+        >
+      }
+    </div>
+
+
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <div class="password-container">
+        <input
+          [type]="mostrarPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          (ngModelChange)="onPasswordChange()"
+          placeholder="Ingresa tu nueva contraseña"
+          required
+        >
+        <button
+          type="button"
+          class="toggle-password"
+          (click)="toggleMostrarPassword()"
+        >
+          {{ mostrarPassword ? '👁️' : '👁️‍🗨️' }}
+        </button>
+      </div>
+    </div>
+
+
+    <div class="validaciones">
+      <p class="validacion-title">Tu contraseña debe tener:</p>
+      <ul class="validacion-lista">
+        <li [class.valido]="tieneMayuscula && tieneMinuscula">
+          Atmenos una minúscula y una mayúscula
+        </li>
+        <li [class.valido]="tieneMinimo8">
+          Mínimo 8 caracteres
+        </li>
+        <li [class.valido]="tieneNumero">
+          Al menos un número
+        </li>
+      </ul>
+    </div>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="!tieneMayuscula || !tieneMinuscula || !tieneMinimo8 || !tieneNumero"
+    >
+      Cambiar contraseña
+    </button>
+  </form>
+</div>
