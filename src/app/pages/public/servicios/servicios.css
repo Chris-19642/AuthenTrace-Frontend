@@ -1,0 +1,162 @@
+
+/* ============================
+   SECCIÓN DE SERVICIOS
+============================ */
+.servicios-section {
+  background-color: #ba181b;
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+}
+
+.servicios-titulo {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.4;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+/* Contenedor de las tarjetas */
+.servicios-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Tarjeta individual */
+.card {
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 15px;
+  width: 300px;
+  padding: 30px 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Íconos */
+.icon {
+  font-size: 36px;
+  color: #ba181b;
+  margin-bottom: 15px;
+}
+
+/* Títulos dentro de las tarjetas */
+.card h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Descripción */
+.card p {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ============================
+   SECCIÓN DE FIRMA
+============================ */
+.firma-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 80px 40px;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+
+.firma-content {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.firma-content h2 {
+  font-family: "Inter", sans-serif;
+  color: #000;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.firma-content p {
+  font-family: "Inter", sans-serif;
+  color: #394149;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.btn-probar {
+  background-color: #ba181b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 40px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-probar:hover {
+  background-color: #8b1d2c;
+}
+
+.firma-preview img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 992px) {
+  .servicios-section {
+    padding: 60px 15px;
+  }
+
+  .servicios-titulo {
+    font-size: 24px;
+  }
+
+  .card {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .firma-section {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .firma-preview img {
+    width: 80%;
+  }
+
+  .firma-content h2 {
+    font-size: 24px;
+  }
+
+  .btn-probar {
+    padding: 10px 30px;
+  }
+}
