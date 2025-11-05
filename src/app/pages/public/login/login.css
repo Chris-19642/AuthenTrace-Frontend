@@ -5,10 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-image: url("/assets/img/mask_group.svg");
+  min-height: 90vh;
+  background: url("/assets/img/mask_group.svg") no-repeat center center/cover;
   padding: 30px;
-  background-position: center;
+  margin-top: 70px;
 }
 
 
@@ -55,7 +55,7 @@ label {
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px 4px;
   border: 1px solid #660708;
   border-radius: 10px;
   font-size: 16px;
