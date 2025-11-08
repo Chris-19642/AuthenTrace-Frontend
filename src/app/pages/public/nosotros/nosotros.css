@@ -1,0 +1,35 @@
+.nosotros-section {
+  margin: 0 auto;
+  padding: 60px 5%;
+  background-color: rgba(186, 24, 27, 0.15);
+  box-sizing: border-box;
+}
+
+.nosotros-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 0 auto;
+}
+
+.nosotros-texto {
+  flex: 1;
+  font-size: 32px;
+  margin-right: 30px;
+  font-family: "Afacad", sans-serif;
+  color: #161a1d;
+  line-height: normal;
+}
+
+.nosotros-texto strong {
+  color: #ba181b;
+}
+.nosotros-info img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  flex: 1 1 400px;
+  object-fit: contain;
+}

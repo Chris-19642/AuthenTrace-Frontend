@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCard } from '@angular/material/card';
@@ -22,7 +22,8 @@ import {Usuario} from '../../../model/usuario';
     MatLabel,
     MatInput,
     MatButton,
-    MatError
+    MatError,
+    RouterLink
   ],
   templateUrl: './crear-cuenta.html',
   styleUrls: ['./crear-cuenta.css']
