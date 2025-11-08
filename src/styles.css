@@ -9,21 +9,11 @@ html, body {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   background-color: var(--mat-sys-surface, #fff);
   color: var(--mat-sys-on-surface, #000);
+  scroll-behavior: smooth;
 }
 
 /* Evitar scroll lateral accidental */
 body {
   overflow-x: hidden;
-}
-
-<<<<<<< HEAD
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-=======
-/* Ajustes generales para tipografía */
-* {
   box-sizing: border-box;
 }
->>>>>>> main

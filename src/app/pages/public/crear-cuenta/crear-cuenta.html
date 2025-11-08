@@ -7,7 +7,7 @@
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" placeholder="Ingrese su nombre completo" />
         <mat-error *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
-          Ingrese un nombre válido (mínimo 3 caracteres).
+          Ingrese un nombre válido.
         </mat-error>
       </mat-form-field>
 
