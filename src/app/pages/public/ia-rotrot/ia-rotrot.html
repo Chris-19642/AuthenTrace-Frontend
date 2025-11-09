@@ -1,0 +1,21 @@
+<section class="chat-section">
+  <div class="chat-box">
+    <img src="assets/img/robrot.png" alt="IA ROTROT" class="bot-image" />
+
+    <div class="messages">
+      <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+        {{ msg.text }}
+      </div>
+    </div>
+
+    <div class="input-row">
+      <input
+        type="text"
+        placeholder="Escribe tu mensaje aquí"
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+      />
+      <button (click)="sendMessage()">Enviar</button>
+    </div>
+  </div>
+</section>

@@ -27,6 +27,7 @@ import { Accesos } from './pages/private/admin/accesos/accesos';
 import {CrearCuenta} from './pages/public/crear-cuenta/crear-cuenta';
 import {RecuperarContrasenha} from './pages/public/recuperar-contrasenha/recuperar-contrasenha';
 import {ReiniciarContrasenha} from './pages/public/reiniciar-contrasenha/reiniciar-contrasenha';
+import {IaRotrot} from './pages/public/ia-rotrot/ia-rotrot';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,7 @@ export const routes: Routes = [
       { path: 'crear-cuenta', component: CrearCuenta },
       { path: 'recuperar-contrasenha', component: RecuperarContrasenha },
       { path: 'reiniciar-contrasenha', component: ReiniciarContrasenha },
+      { path: 'ia-rotrot', component: IaRotrot },
     ],
   },
   {
