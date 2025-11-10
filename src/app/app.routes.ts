@@ -28,6 +28,7 @@ import {CrearCuenta} from './pages/public/crear-cuenta/crear-cuenta';
 import {RecuperarContrasenha} from './pages/public/recuperar-contrasenha/recuperar-contrasenha';
 import {ReiniciarContrasenha} from './pages/public/reiniciar-contrasenha/reiniciar-contrasenha';
 import {IaRotrot} from './pages/public/ia-rotrot/ia-rotrot';
+import {Perfil} from './pages/private/user/perfil/perfil';
 
 export const routes: Routes = [
   {
@@ -55,6 +56,7 @@ export const routes: Routes = [
       { path: 'reporte-verificacion', component: ReporteVerificacion },
       { path: 'grupos', component: Grupos },
       { path: 'soporte', component: Soporte },
+      { path: 'perfil', component: Perfil },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     ],
   },
