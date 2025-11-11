@@ -5,9 +5,17 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="nombre" placeholder="Ingrese su nombre completo" />
+        <input matInput formControlName="nombre" placeholder="Ingrese su nombre" />
         <mat-error *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
           Ingrese un nombre válido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" placeholder="Ingrese sus apellidos " />
+        <mat-error *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.touched">
+          Ingrese un apellid válido.
         </mat-error>
       </mat-form-field>
 

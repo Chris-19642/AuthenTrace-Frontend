@@ -36,6 +36,7 @@ export class CrearCuenta {
   constructor() {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{2,50}$/)]],
+      apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]{2,50}$/)]],
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(6)]]
     });

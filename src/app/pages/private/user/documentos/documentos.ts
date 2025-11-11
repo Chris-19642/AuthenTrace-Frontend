@@ -1,37 +1,44 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {DocumentoService} from '../../../../services/documento-service';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../../services/auth-service';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-documentos',
-  imports: [],
+  imports: [
+    CommonModule,
+  ],
   templateUrl: './documentos.html',
   styleUrl: './documentos.css',
 })
 export class Documentos {
+  documentoService = inject(DocumentoService);
+  router = inject(Router);
+  auth = inject(AuthService); // por ahora aún no se usa
+
   selectedFile: File | null = null;
-  isDragging: boolean = false;
+  nombreTemporal: string | null = null;
+  isDragging = false;
 
   constructor() {}
 
   //drag over
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = true;
   }
 
   //drag leave
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = false;
   }
 
   //drop
   onDrop(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = false;
-
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       this.handleFile(files[0]);
@@ -49,27 +56,39 @@ export class Documentos {
   // Procesar archivo
   private handleFile(file: File): void {
     // Validar que sea PDF
-    if (file.type === 'application/pdf') {
-      this.selectedFile = file;
-      console.log('Archivo seleccionado:', file.name);
-    } else {
-      alert('Por favor, selecciona un archivo PDF');
+    if (file.type !== 'application/pdf') {
+      alert('Solo se permiten archivos PDF.');
+      return;
     }
+    this.documentoService.subirTemporal(file).subscribe({
+      next: (nombre) => {
+        this.selectedFile = file;
+        this.nombreTemporal = nombre;
+      },
+      error: (error) => ("Error al subir el archivo.")
+    });
   }
 
   // Limpiar archivo
   clearFile(event: Event): void {
     event.stopPropagation();
+    if (this.nombreTemporal) {
+      this.documentoService.cancelarTemporal(this.nombreTemporal).subscribe();
+    }
     this.selectedFile = null;
-    console.log('Archivo eliminado');
+    this.nombreTemporal = null;
   }
 
   // Verificar
   verifySignature(): void {
-    if (this.selectedFile) {
-      console.log('Verificando firma del archivo:', this.selectedFile.name);
+    if (!this.selectedFile || !this.nombreTemporal) return;
 
-      alert(`Verificando firma del archivo: ${this.selectedFile.name}`);
-    }
+    // Por ahora harcoded, luego tomamos del AuthService
+    const idUsuario = 1;
+
+    this.documentoService.guardarDefinitivo(this.nombreTemporal, idUsuario).subscribe({
+      next: () => alert("Documento guardado correctamente."),
+      error: () => alert("Error al guardar documento.")
+    });
   }
 }
