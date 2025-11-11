@@ -65,7 +65,7 @@ export const routes: Routes = [
     component: PrivateLayout,
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: 'actualizaciones', component: Actualizaciones },
+      { path: 'actualizaciones/programar', component: Actualizaciones },
       { path: 'reportes-uso', component: ReportesUso },
       { path: 'alertas', component: AlertasComponent },
       { path: 'accesos', component: Accesos },
