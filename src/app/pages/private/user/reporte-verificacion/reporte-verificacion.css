@@ -1,0 +1,221 @@
+.reporte-container {
+  padding: 40px 60px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Header */
+.page-title {
+  font-size: 48px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 40px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Loading & Error */
+.loading-message,
+.error-message {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error-message {
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+}
+
+/* Card del Reporte */
+.reporte-card {
+  background-color: white;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 900px;
+}
+
+/* Nombre del documento */
+.documento-nombre {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0 0 30px 0;
+}
+
+/* Contenido principal */
+.reporte-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Imagen Container */
+.imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.documento-ilustracion {
+  width: 240px;
+  height: 200px;
+  background: linear-gradient(135deg, #e8a4a4 0%, #d88888 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Info Container */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Estado de la Firma */
+.estado-firma {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.check-symbol {
+  font-size: 28px;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.check-symbol.valido {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+}
+
+.check-symbol.invalido {
+  color: #d32f2f;
+  background-color: #ffebee;
+}
+
+.estado-texto {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.estado-texto.valido {
+  color: #2e7d32;
+}
+
+.estado-texto.invalido {
+  color: #d32f2f;
+}
+
+/* Confianza */
+.confianza-texto {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+/* Detalles */
+.detalles-texto {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin: 8px 0 0 0;
+}
+
+/* Discrepancias */
+.discrepancias-box {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffebee;
+  border-radius: 8px;
+  border-left: 4px solid #d32f2f;
+}
+
+.discrepancias-titulo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #d32f2f;
+  margin: 0 0 12px 0;
+}
+
+.discrepancias-lista {
+  margin: 0;
+  padding-left: 20px;
+  color: #666;
+}
+
+.discrepancias-lista li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Botón de Descarga */
+.descargar-button {
+  margin-top: 24px;
+  background-color: #BA181B;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(186, 24, 27, 0.3);
+}
+
+.descargar-button:hover {
+  background-color: #9a1416;
+  box-shadow: 0 4px 8px rgba(186, 24, 27, 0.4);
+}
+
+.descargar-button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reporte-container {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 32px;
+  }
+
+  .reporte-card {
+    padding: 24px;
+  }
+
+  .reporte-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .documento-ilustracion {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .documento-nombre {
+    font-size: 20px;
+  }
+
+  .estado-texto {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,11 @@
+<nav class="navbar-privado">
+  <a routerLink="/" class="logo">
+    <img src="assets/img/logo_at.png" alt="AuthenTrace" />
+  </a>
+
+  <div class="usuario" (click)="irPerfil()">
+    <span>{{ usuario?.nombre }}</span>
+    <i class="material-icons icono-usuario">account_circle</i>
+  </div>
+
+</nav>

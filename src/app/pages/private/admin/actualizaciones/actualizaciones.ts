@@ -1,116 +1,139 @@
-import {Component, OnInit} from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import {CommonModule} from '@angular/common';
-
-interface Actualizacion {
-  version: string;
-  fecha?: string;
-  estado: 'Pendiente' | 'Aplicada';
-  fechaAplicacion?: string;
-}
+import {Component, inject, ViewChild} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {CommonModule, DatePipe} from '@angular/common';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ActualizacionService} from '../../../../services/actualizacion-service';
+import {Actualizacion} from "../../../../model/actualizacion";
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable,
+  MatTableDataSource
+} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, MatSortHeader} from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-actualizaciones',
   imports: [
     FormsModule,
     CommonModule,
+    ReactiveFormsModule,
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatColumnDef,
+    MatPaginator,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatSort,
+    MatTable,
+    MatColumnDef,
+    MatHeaderRowDef,
+    MatRowDef,
+    DatePipe,
+    MatSort,
+    MatSortHeader,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCell,
+    MatColumnDef,
+    MatHeaderRow,
+    MatRow,
+    MatPaginator,
+    MatIconModule,
   ],
   templateUrl: './actualizaciones.html',
   styleUrl: './actualizaciones.css',
 })
 export class Actualizaciones {
+  lista: Actualizacion[] = [];
+  displayedColumns: string[] = ['version', 'fechaProgramada'];
+  dataSource: MatTableDataSource<Actualizacion> = new MatTableDataSource<Actualizacion>();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  actualizacionForm: FormGroup;
+  fb = inject(FormBuilder);
+  actualizacionService = inject(ActualizacionService);
+  router = inject(Router);
   actualizaciones: Actualizacion[] = [];
+
   fechaSeleccionada: string = '';
+  cargando: boolean = false;
   mensajeExito: string = '';
   mensajeError: string = '';
-  cargando: boolean = false;
+  versionIngresada: string = '';
 
-  ngOnInit(): void {
-    this.cargarDatosEjemplo();
-    this.establecerFechaMinima();
-  }
-
-
-  establecerFechaMinima(): void {
+  constructor() {
+    this.actualizacionForm = this.fb.group({
+      idActualizacion: [''],
+      version: ['', Validators.required],
+      fechaProgramada: ['', Validators.required]
+    })
     const hoy = new Date();
-    const año = hoy.getFullYear();
-    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-    const dia = String(hoy.getDate()).padStart(2, '0');
-    this.fechaSeleccionada = `${año}-${mes}-${dia}`;
+    this.fechaSeleccionada = hoy.toISOString().split('T')[0];
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
 
-  cargarDatosEjemplo(): void {
-    this.actualizaciones = [
-      { version: '1.2.1', estado: 'Pendiente' },
-      { version: '1.2.0', estado: 'Aplicada', fechaAplicacion: '01/02/2025' },
-      { version: '1.1.9', estado: 'Aplicada', fechaAplicacion: '01/02/2025' }
-    ];
+  ngOnInit() {
+    console.log('Component ngOnInit');
+    this.actualizacionService.listarActualizaciones().subscribe({
+      next: data => {
+        this.dataSource.data = data
+        this.ngAfterViewInit()
+        console.log('Actualizaciones cargadas:', data);},
+    })
   }
 
-
-  programarActualizacion(): void {
+  programarActualizacion() {
     if (!this.fechaSeleccionada) {
-      this.mostrarError('Por favor selecciona una fecha');
+      this.mensajeError = 'Por favor seleccione una fecha';
       return;
     }
-
-    if (!this.validarFechaFutura(this.fechaSeleccionada)) {
-      this.mostrarError('La fecha debe ser futura');
-      return;
-    }
-
 
     this.cargando = true;
-
-    setTimeout(() => {
-
-      this.mostrarExito(`Actualización programada para ${this.formatearFecha(this.fechaSeleccionada)}`);
-      this.cargando = false;
-
-
-      this.actualizaciones.unshift({
-        version: '1.2.2',
-        estado: 'Pendiente',
-        fecha: this.fechaSeleccionada
-      });
-    }, 1000);
-  }
-
-
-  validarFechaFutura(fecha: string): boolean {
-    const fechaSelec = new Date(fecha);
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);
-    return fechaSelec >= hoy;
-  }
-
-
-  formatearFecha(fecha: string): string {
-    const [año, mes, dia] = fecha.split('-');
-    return `${dia}/${mes}/${año}`;
-  }
-
-
-  mostrarExito(mensaje: string): void {
-    this.mensajeExito = mensaje;
-    this.mensajeError = '';
-    setTimeout(() => {
-      this.mensajeExito = '';
-    }, 5000);
-  }
-
-
-  mostrarError(mensaje: string): void {
-    this.mensajeError = mensaje;
     this.mensajeExito = '';
-    setTimeout(() => {
-      this.mensajeError = '';
-    }, 5000);
-  }
+    this.mensajeError = '';
 
+    const actualizacion = new Actualizacion();
+    actualizacion.idActualizacion = 0;
+    actualizacion.version = this.versionIngresada;
+    actualizacion.fechaProgramada = new Date(this.fechaSeleccionada);
 
-  obtenerClaseEstado(estado: string): string {
-    return estado === 'Pendiente' ? 'estado-pendiente' : 'estado-aplicada';
+    console.log("Actualización a Programar:", actualizacion);
+
+    this.actualizacionService.programarActualizacion(actualizacion).subscribe({
+      next: data => {
+        this.cargando = false;
+        this.mensajeExito = 'Actualización programada exitosamente';
+        console.log("Se programó:", data);
+        this.ngOnInit();
+        setTimeout(() => {
+          this.mensajeExito = '';
+        }, 3000);
+      },
+      error: error => {
+        this.cargando = false;
+        this.mensajeError = 'Error al programar actualización';
+        console.log("Error:", error);
+        setTimeout(() => {
+          this.mensajeError = '';
+        }, 3000);
+      }
+    });
   }
 }

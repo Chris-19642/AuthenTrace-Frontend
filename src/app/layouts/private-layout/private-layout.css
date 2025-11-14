@@ -1,23 +1,30 @@
+/* Contenedor general debajo del navbar */
 .private-layout {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px); /* Ajustar según altura del navbar */
+  margin-top: 60px; /* misma altura del navbar */
 }
 
+/* Sidebar ocupa solo la izquierda */
 app-sidebar {
-  width: 250px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 1000;
-  background: #f8f9fa;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
 }
 
+/* Contenido principal */
 .main-content {
   flex: 1;
-  margin-left: 250px;
-  min-height: 100vh;
   padding: 20px;
   background: #f5f5f5;
+  margin-left: 210px;
+  transition: margin-left 0.3s ease;
+
+}
+
+@media (max-width: 768px) {
+  .app-sidebar {
+    width: 70px !important;
+  }
+  .main-content {
+    margin-left: 70px !important;
+  }
 }

@@ -15,6 +15,7 @@ import { Login } from './pages/public/login/login';
 import { InicioUser } from './pages/private/user/inicio/inicio';
 import { Documentos } from './pages/private/user/documentos/documentos';
 import { Reportes } from './pages/private/user/reportes/reportes';
+import { ReporteVerificacion } from './pages/private/user/reporte-verificacion/reporte-verificacion';
 import { Grupos } from './pages/private/user/grupos/grupos';
 
 // Páginas privadas (admin)
@@ -24,6 +25,10 @@ import { ReportesUso } from './pages/private/admin/reportes-uso/reportes-uso';
 import { AlertasComponent } from './pages/private/admin/alertas/alertas';
 import { Accesos } from './pages/private/admin/accesos/accesos';
 import {CrearCuenta} from './pages/public/crear-cuenta/crear-cuenta';
+import {RecuperarContrasenha} from './pages/public/recuperar-contrasenha/recuperar-contrasenha';
+import {ReiniciarContrasenha} from './pages/public/reiniciar-contrasenha/reiniciar-contrasenha';
+import {IaRotrot} from './pages/public/ia-rotrot/ia-rotrot';
+import {Perfil} from './pages/private/user/perfil/perfil';
 
 export const routes: Routes = [
   {
@@ -36,6 +41,9 @@ export const routes: Routes = [
       { path: 'soporte', component: Soporte },
       { path: 'login', component: Login },
       { path: 'crear-cuenta', component: CrearCuenta },
+      { path: 'recuperar-contrasenha', component: RecuperarContrasenha },
+      { path: 'reiniciar-contrasenha', component: ReiniciarContrasenha },
+      { path: 'ia-rotrot', component: IaRotrot },
     ],
   },
   {
@@ -45,8 +53,10 @@ export const routes: Routes = [
       { path: 'inicio', component: InicioUser },
       { path: 'documentos', component: Documentos },
       { path: 'reportes', component: Reportes },
+      { path: 'reporte-verificacion', component: ReporteVerificacion },
       { path: 'grupos', component: Grupos },
       { path: 'soporte', component: Soporte },
+      { path: 'perfil', component: Perfil },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     ],
   },
@@ -55,7 +65,7 @@ export const routes: Routes = [
     component: PrivateLayout,
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: 'actualizaciones', component: Actualizaciones },
+      { path: 'actualizaciones/programar', component: Actualizaciones },
       { path: 'reportes-uso', component: ReportesUso },
       { path: 'alertas', component: AlertasComponent },
       { path: 'accesos', component: Accesos },

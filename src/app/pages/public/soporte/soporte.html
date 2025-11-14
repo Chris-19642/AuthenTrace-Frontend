@@ -1,1 +1,182 @@
-<p>soporte works!</p>
+<!-- PORTADA / HERO -->
+<section id="portada" class="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT: Texto + IA card -->
+    <div class="hero-left">
+      <h1 class="hero-title">¿NECESITAS AYUDA?</h1>
+      <p class="hero-sub">
+        Envía este formulario para obtener más información sobre la solución de firma electrónica que forma parte de una plataforma de automatización empresarial integral.
+      </p>
+
+      <mat-card class="ia-card" routerLink="/ia-rotrot">
+        <div class="ia-card-inner">
+          <img src="assets/img/robrot.png" alt="IA" class="ia-img" />
+          <div class="ia-text">
+            <h3>IA ROTROT</h3>
+            <p>Para respuestas rápidas, comunicarse con IA ROTROT</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- RIGHT: Formulario -->
+    <div class="hero-right">
+      <mat-card class="form-card mat-elevation-z6">
+        <h3 class="form-card-title">Contactar con Soporte</h3>
+
+        <form [formGroup]="contactoForm" class="form-container" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput formControlName="nombre" placeholder="Nombre Completo" />
+            <mat-error *ngIf="contactoForm.get('nombre')?.invalid && contactoForm.get('nombre')?.touched">
+              Nombre obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="correo" type="email" placeholder="correo@ejemplo.com" />
+            <mat-error *ngIf="contactoForm.get('correo')?.hasError('required') && contactoForm.get('correo')?.touched">
+              Correo obligatorio
+            </mat-error>
+            <mat-error *ngIf="contactoForm.get('correo')?.hasError('email') && contactoForm.get('correo')?.touched">
+              Correo inválido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Seleccionar País</mat-label>
+            <mat-select formControlName="pais">
+              <mat-option value="Perú">Perú</mat-option>
+              <mat-option value="México">México</mat-option>
+              <mat-option value="Chile">Chile</mat-option>
+            </mat-select>
+            <mat-error *ngIf="contactoForm.get('pais')?.invalid && contactoForm.get('pais')?.touched">
+              Selecciona un país
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Número de Teléfono</mat-label>
+            <input matInput type="tel" formControlName="telefono"/>
+            <mat-error *ngIf="contactoForm.get('telefono')?.invalid && contactoForm.get('telefono')?.touched">
+              Teléfono obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Nombre de la Empresa</mat-label>
+            <input matInput formControlName="empresa"/>
+            <mat-error *ngIf="contactoForm.get('empresa')?.invalid && contactoForm.get('empresa')?.touched">
+              Nombre de empresa obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Título del Trabajo</mat-label>
+            <input matInput formControlName="trabajo"/>
+            <mat-error *ngIf="contactoForm.get('trabajo')?.invalid && contactoForm.get('trabajo')?.touched">
+              Título del trabajo obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Preguntas o comentarios (Opcional)</mat-label>
+            <textarea matInput rows="4" formControlName="mensaje"></textarea>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="interesadoApi" class="api-check">Interesados en API</mat-checkbox>
+
+          <div class="form-actions">
+            <button mat-flat-button color="warn" class="btn-send" type="submit">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section id="faq" class="faq">
+  <h2>PREGUNTAS FRECUENTES</h2>
+
+  <div class="faq-container">
+    <div class="faq-inner">
+      <details>
+        <summary>¿Cómo puedo registrarme en AuthenTrace?</summary>
+        <p>Para registrarte, simplemente visita nuestra página de inicio y haz clic en "Registrarse".
+          Completa los datos requeridos y sigue las instrucciones.</p>
+      </details>
+      <details>
+        <summary>¿Cómo recupero mi contraseña?</summary>
+        <p>Puedes recuperar tu contraseña desde la página de inicio de sesión haciendo clic en
+          "Reiníciala aquí" y siguiendo las instrucciones.</p>
+      </details>
+      <details>
+        <summary>¿Qué documentos puedo autenticar?</summary>
+        <p>AuthenTrace permite la autenticación de documentos como contratos, acuerdos, y cualquier
+          documento oficial que requiera una firma válida.</p>
+      </details>
+      <details>
+        <summary>¿AuthenTrace garantiza la seguridad de mis datos?</summary>
+        <p>Sí, implementamos cifrado de extremo a extremo y cumplimos con los estándares de seguridad más altos para proteger
+          tu información.</p>
+      </details>
+      <details>
+        <summary>¿Cómo contacto con soporte técnico?</summary>
+        <p>Puedes contactar con soporte técnico mediante el formulario en nuestra página de "Soporte" o enviando
+          un correo a soporte&#64;authentrace.com.</p>
+      </details>
+      <details>
+        <summary>¿Qué hago si mi documento no se autentica correctamente?</summary>
+        <p>En caso de problemas con la autenticación, revisa las recomendaciones en la sección de ayuda o contacta
+          a soporte técnico.</p>
+      </details>
+      <details>
+        <summary>¿Puedo utilizar AuthenTrace en dispositivos móviles?</summary>
+        <p>Sí, AuthenTrace es compatible con dispositivos móviles y está optimizado para su uso en
+          diferentes plataformas.</p>
+      </details>
+      <details>
+        <summary>¿Cuáles son los requisitos mínimos del sistema?</summary>
+        <p>AuthenTrace funciona en cualquier navegador moderno. Para la mejor experiencia, recomendamos Google Chrome
+          o Safari actualizados.</p>
+      </details>
+    </div>
+
+    <div class="faq-illustration">
+      <img src="assets/img/centrodeayuda.png" alt="ayuda" />
+    </div>
+  </div>
+
+</section>
+
+<!-- GUIAS Y TUTORIALES -->
+<section id="guias" class="guias">
+  <h2>Guías y Tutoriales</h2>
+  <div class="guias-grid">
+    <mat-card class="guia-card">
+      <img src="assets/img/icono_guia.png" alt="Guía" />
+      <h3>Guía de Inicio en AuthenTrace</h3>
+    </mat-card>
+
+    <mat-card class="guia-card">
+      <img src="assets/img/icono_firma.png" alt="Tutorial" />
+      <h3>Tutorial para Firmas Digitales</h3>
+    </mat-card>
+
+    <mat-card class="guia-card">
+      <img src="assets/img/icono_seguridad.png" alt="Consejos" />
+      <h3>Consejos de Seguridad</h3>
+    </mat-card>
+  </div>
+  <p class="contact-soport">
+    ¿No encuentras lo que buscas?
+    <a routerLink="/soporte" fragment="portada" class="register-link">Contacta con nuestro equipo de soporte</a>
+  </p>
+</section>

@@ -1,1 +1,87 @@
-<p>reportes works!</p>
+<div class="reportes-container">
+  <!-- Header -->
+  <div class="header-section">
+    <h1 class="page-title">Reportes</h1>
+  </div>
+
+  <!-- Tabla de reportes -->
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="reportes-table">
+
+      <!-- Columna de Icono -->
+      <ng-container matColumnDef="icono">
+        <th mat-header-cell *matHeaderCellDef class="icon-column"></th>
+        <td mat-cell *matCellDef="let reporte" class="icon-column">
+        </td>
+      </ng-container>
+
+      <!-- Columna de Nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="nombre-column">
+          Nombre
+        </th>
+        <td mat-cell *matCellDef="let reporte" class="nombre-column">
+          {{ reporte.nombre }}
+        </td>
+      </ng-container>
+
+      <!-- Columna de Resultado -->
+      <ng-container matColumnDef="resultado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="resultado-column">
+          Resultado
+        </th>
+        <td mat-cell *matCellDef="let reporte" class="resultado-column">
+          <span [ngClass]="getResultadoClass(reporte.resultado)">
+            {{ reporte.resultado }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Columna de Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="fecha-column">
+          Fecha
+        </th>
+        <td mat-cell *matCellDef="let reporte" class="fecha-column">
+          {{ reporte.fecha | date: 'dd/MM/yyyy HH:mm' }}
+        </td>
+      </ng-container>
+
+      <!-- Columna de Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef class="acciones-column">
+          Acción
+        </th>
+        <td mat-cell *matCellDef="let reporte" class="acciones-column">
+          <div class="acciones-container">
+            <button
+              mat-button
+              class="ver-button"
+              (click)="verDetalle(reporte)"
+              aria-label="Ver detalles del reporte">
+              Ver
+            </button>
+            <button
+              mat-icon-button
+              class="download-button"
+              (click)="descargarReporte(reporte)"
+              aria-label="Descargar reporte">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 15L3.75 8.75L5.5 6.9375L8.75 10.1875V0H11.25V10.1875L14.5 6.9375L16.25 8.75L10 15ZM2.5 20C1.8125 20 1.22396 19.7552 0.734375 19.2656C0.244792 18.776 0 18.1875 0 17.5V13.75H2.5V17.5H17.5V13.75H20V17.5C20 18.1875 19.7552 18.776 19.2656 19.2656C18.776 19.7552 18.1875 20 17.5 20H2.5Z" fill="#BA181B"/>
+              </svg>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Mensaje cuando no hay datos -->
+    <div *ngIf="dataSource.data.length === 0" class="no-data">
+      <mat-icon>description</mat-icon>
+      <p>No hay reportes disponibles</p>
+    </div>
+  </div>
+</div>
