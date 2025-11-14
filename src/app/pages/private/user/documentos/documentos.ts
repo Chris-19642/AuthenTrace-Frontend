@@ -83,12 +83,12 @@ export class Documentos {
   verifySignature(): void {
     if (!this.selectedFile || !this.nombreTemporal) return;
 
-    // Por ahora harcoded, luego tomamos del AuthService
-    const idUsuario = 1;
+    const idUsuario = Number(localStorage.getItem('idUsuario'));
 
-    this.documentoService.guardarDefinitivo(this.nombreTemporal, idUsuario).subscribe({
-      next: () => alert("Documento guardado correctamente."),
-      error: () => alert("Error al guardar documento.")
-    });
+    this.documentoService.guardarDefinitivo(this.nombreTemporal, idUsuario)
+      .subscribe({
+        next: () => alert("Documento guardado correctamente."),
+        error: () => alert("Error al guardar documento.")
+      });
   }
 }
