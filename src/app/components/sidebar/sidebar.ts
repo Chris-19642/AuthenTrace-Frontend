@@ -18,7 +18,7 @@ export class Sidebar {
     const storedRol = localStorage.getItem('rol');
 
     if (storedRol === 'ROLE_ADMIN') this.rol = 'ADMIN';
-    else if (storedRol === 'ROLE_USUARIO') this.rol = 'USER';
+    else if (storedRol === 'ROLE_USER') this.rol = 'USER';
     else this.rol = null;
   }
   logout() {

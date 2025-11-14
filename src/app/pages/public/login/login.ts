@@ -38,7 +38,7 @@ export class Login {
         if (roles.includes('ROLE_ADMIN')) {
           console.log('Redirigiendo a /admin/inicio');
           this.router.navigate(['/admin/inicio']);
-        } else if (roles.includes('ROLE_USUARIO')) {
+        } else if (roles.includes('ROLE_USER')) {
           console.log('Redirigiendo a /user/inicio');
           this.router.navigate(['/user/inicio']);
         } else {
