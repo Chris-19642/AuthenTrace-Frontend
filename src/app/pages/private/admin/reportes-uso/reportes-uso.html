@@ -1,1 +1,97 @@
-<p>reportes works!</p>
+<div class="reportes-container">
+  <div class="contenido-principal">
+
+    <!-- Sección de Gráfico de Actividad -->
+    <div class="seccion-grafico">
+      <h2 class="titulo-seccion">Actividad de usuarios</h2>
+      <div class="grafico-container">
+        <div class="grafico-ejes">
+          <div class="eje-y">
+            <span>80</span>
+            <span>60</span>
+            <span>40</span>
+            <span>20</span>
+            <span>0</span>
+          </div>
+          <div class="grafico-area">
+            <div class="lineas-guia">
+              <div class="linea-guia"></div>
+              <div class="linea-guia"></div>
+              <div class="linea-guia"></div>
+              <div class="linea-guia"></div>
+            </div>
+            <svg class="grafico-linea" viewBox="0 0 700 200" preserveAspectRatio="none">
+              <polyline
+                [attr.points]="'0,150 100,125 200,75 300,125 400,50 500,150 600,25 700,40'"
+                fill="none"
+                stroke="#000"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="eje-x">
+          <span *ngFor="let label of chartLabels">{{ label }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Información de Accesos -->
+    <div class="seccion-accesos">
+      <h2 class="titulo-seccion">Información de acceso</h2>
+      <div class="tabla-accesos">
+        <div class="tabla-header">
+          <div class="tabla-col">Usuario</div>
+          <div class="tabla-col">IP</div>
+          <div class="tabla-col">Navegador</div>
+        </div>
+        <div class="tabla-body">
+          <div class="tabla-row" *ngFor="let acceso of accesos">
+            <div class="tabla-col">{{ acceso.usuario }}</div>
+            <div class="tabla-col">{{ acceso.ip }}</div>
+            <div class="tabla-col">{{ acceso.navegador }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Generación de Informe -->
+    <div class="seccion-generacion">
+      <button
+        class="btn-generar"
+        (click)="generarInforme()"
+        [disabled]="cargando"
+      >
+        <mat-icon>description</mat-icon>
+        {{ cargando ? 'Generando...' : 'Generar informe mensual' }}
+      </button>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="mensajeError" class="mensaje-error">
+      {{ mensajeError }}
+    </div>
+
+    <!-- Selector de Mes y Año (Modal o sidebar - oculto por defecto) -->
+    <div class="selector-periodo" *ngIf="false">
+      <mat-form-field appearance="fill">
+        <mat-label>Mes</mat-label>
+        <mat-select [(ngModel)]="mesSeleccionado">
+          <mat-option *ngFor="let mes of meses" [value]="mes.valor">
+            {{ mes.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Año</mat-label>
+        <mat-select [(ngModel)]="anioSeleccionado">
+          <mat-option *ngFor="let anio of anios" [value]="anio">
+            {{ anio }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+</div>
