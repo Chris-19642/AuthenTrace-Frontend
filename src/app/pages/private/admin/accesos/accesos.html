@@ -1,59 +1,50 @@
-<div class="container">
-  <div class="card">
-    <h1 class="title">Reporte de accesos</h1>
-    <div class="search-container">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Buscar por nombre, rol o estado..."
-        #searchInput
-        (input)="buscar(searchInput.value)"
-      >
-      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"></circle>
-        <path d="m21 21-4.35-4.35"></path>
-      </svg>
-    </div>
-
-    <table class="table">
-      <thead>
-      <tr>
-        <th class="sortable">
-          Nombre
-          <span class="sort-icons">↑↓</span>
-        </th>
-        <th>Rol</th>
-        <th class="sortable">
-          Estado
-          <span class="sort-icons">↑↓</span>
-        </th>
-        <th>Acción</th>
-      </tr>
-      </thead>
-      <tbody>
-        @for (usuario of usuariosFiltrados; track usuario.nombre) {
-          <tr>
-            <td>{{ usuario.nombre }}</td>
-            <td>{{ usuario.rol }}</td>
-            <td>
-              <span [class]="'badge badge-' + (usuario.estado === 'Activo' ? 'activo' : 'bloqueado')">
-                {{ usuario.estado }}
-              </span>
-            </td>
-            <td>
-              <div class="action-buttons">
-                <button class="btn btn-editar" (click)="editar(usuario)">Editar</button>
-                <button class="btn btn-bloquear" (click)="bloquear(usuario)">Bloquear</button>
-                <button class="btn btn-eliminar" (click)="eliminar(usuario)">Eliminar</button>
-              </div>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-
-    <button class="btn-historial" (click)="verHistorial()">
-      Historial de accesos
-    </button>
+<div class="mat-elevation-z8">
+  <div class="header-section">
+    <h2>Historial de accesos</h2>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar usuario</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar...">
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
   </div>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Usuario Column -->
+    <ng-container matColumnDef="idUsuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Usuario </th>
+      <td mat-cell *matCellDef="let element"> {{element.idUsuario}} </td>
+    </ng-container>
+
+    <!-- Rol Column -->
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef> Rol </th>
+      <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+    </ng-container>
+
+    <!-- Fecha Inicio Column -->
+    <ng-container matColumnDef="fechaInicio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicio </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date:'dd/MM/yyyy HH:mm:ss'}} </td>
+    </ng-container>
+
+    <!-- IP Origen Column -->
+    <ng-container matColumnDef="ipOrigen">
+      <th mat-header-cell *matHeaderCellDef> IP Origen </th>
+      <td mat-cell *matCellDef="let element"> {{element.ipOrigen}} </td>
+    </ng-container>
+
+    <!-- Navegador Column -->
+    <ng-container matColumnDef="navegador">
+      <th mat-header-cell *matHeaderCellDef> Navegador </th>
+      <td mat-cell *matCellDef="let element"> {{element.navegador}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Seleccionar página">
+  </mat-paginator>
 </div>

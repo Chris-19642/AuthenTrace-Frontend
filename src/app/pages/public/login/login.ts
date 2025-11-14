@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from '../../../services/auth-service';
 import {FormsModule} from '@angular/forms';
+import {Sesion} from '../../../model/sesion';
+import {SesionService} from '../../../services/sesion-service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class Login {
   password = '';
   errorMessage = '';
 
+  sesionService = inject(SesionService);
   constructor(private authService: AuthService, private router: Router) {}
 
   iniciarSesion() {
@@ -32,6 +35,28 @@ export class Login {
 
         localStorage.setItem('lastUser', this.username);
         localStorage.setItem('lastPass', this.password);
+
+        const sesion = new Sesion();
+        sesion.idSesion = 0;
+        sesion.idUsuario = res.idUsuario;
+        sesion.fechaInicio = new Date();
+        sesion.fechaFin = new Date();
+        sesion.ipOrigen = 'localhost';
+        sesion.navegador = this.obtenerNavegador();
+
+        console.log('Registrando sesión:', sesion);
+
+        this.sesionService.registrarSesion(sesion).subscribe({
+          next: (sesionRes) => {
+            console.log('Sesión registrada exitosamente:', sesionRes);
+            if (sesionRes.id) {
+              localStorage.setItem('idSesion', sesionRes.id.toString());
+            }
+          },
+          error: (err) => {
+            console.error('Error al registrar sesión:', err);
+          }
+        });
 
 
         // Redirigir según el rol
@@ -50,5 +75,13 @@ export class Login {
         this.errorMessage = 'Credenciales incorrectas.';
       }
     });
+  }
+  obtenerNavegador(): string {
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes('Chrome')) return 'Chrome';
+    if (userAgent.includes('Firefox')) return 'Firefox';
+    if (userAgent.includes('Safari')) return 'Safari';
+    if (userAgent.includes('Edge')) return 'Edge';
+    return 'Desconocido';
   }
 }
