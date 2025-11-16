@@ -15,7 +15,7 @@ import {CommonModule} from '@angular/common';
 export class Documentos {
   documentoService = inject(DocumentoService);
   router = inject(Router);
-  auth = inject(AuthService); // por ahora aún no se usa
+  auth = inject(AuthService);
 
   selectedFile: File | null = null;
   nombreTemporal: string | null = null;
@@ -81,14 +81,35 @@ export class Documentos {
 
   // Verificar
   verifySignature(): void {
-    if (!this.selectedFile || !this.nombreTemporal) return;
+    if (!this.selectedFile || !this.nombreTemporal) {
+      alert("No hay archivo cargado.");
+      return;
+    }
 
-    const idUsuario = Number(localStorage.getItem('idUsuario'));
+    const idUsuarioStr = localStorage.getItem('idUsuario');
+    if (!idUsuarioStr) {
+      alert("No se encontró el id de usuario. Por favor inicie sesión de nuevo.");
+      return;
+    }
+    const idUsuario = Number(idUsuarioStr);
+    if (!idUsuario || idUsuario <= 0) {
+      alert("Id de usuario inválido. Revise el login.");
+      return;
+    }
+
+    console.log("Enviando guardarDefinitivo:", { nombreTemporal: this.nombreTemporal, idUsuario });
 
     this.documentoService.guardarDefinitivo(this.nombreTemporal, idUsuario)
       .subscribe({
-        next: () => alert("Documento guardado correctamente."),
-        error: () => alert("Error al guardar documento.")
+        next: (doc) => {
+          alert("Documento guardado correctamente.");
+          console.log("📄 Documento guardado:", doc);
+        },
+        error: (err) => {
+          alert("Error al guardar documento.");
+          console.error(err);
+        }
       });
   }
+
 }

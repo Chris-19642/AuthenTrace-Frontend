@@ -41,7 +41,7 @@ export const JwtInterceptor: HttpInterceptorFn = (req, next) => {
   // 🔄 Manejo de errores y renovación automática del token
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 403 && !isPublic) {
+      if ((error.status === 401 || error.status === 403) && !isPublic) {
         console.warn('⚠️ Token expirado. Intentando renovarlo...');
 
         const username = localStorage.getItem('lastUser');

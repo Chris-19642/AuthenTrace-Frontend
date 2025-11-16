@@ -27,7 +27,9 @@ export class DocumentoService {
 
   // Guardar definitivo
   guardarDefinitivo(nombreArchivo: string, idUsuario: number): Observable<Documento> {
-    return this.http.post<Documento>(this.url + `/guardar/${idUsuario}?nombreArchivo=${nombreArchivo}`, {});
+    const formData = new FormData();
+    formData.append("nombreArchivo", nombreArchivo);
+    return this.http.post<Documento>(this.url + `/guardar/${idUsuario}`, formData);
   }
 
   // Listar documentos por usuario
