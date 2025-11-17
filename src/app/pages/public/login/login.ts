@@ -4,6 +4,8 @@ import {AuthService} from '../../../services/auth-service';
 import {FormsModule} from '@angular/forms';
 import {Sesion} from '../../../model/sesion';
 import {SesionService} from '../../../services/sesion-service';
+import {Alerta} from '../../../model/alerta';
+import {AlertaService} from '../../../services/alerta-service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,7 @@ export class Login {
   errorMessage = '';
 
   sesionService = inject(SesionService);
+  alertaService = inject(AlertaService);
   constructor(private authService: AuthService, private router: Router) {}
 
   iniciarSesion() {
@@ -73,6 +76,21 @@ export class Login {
       error: (err) => {
         console.error('Error de login', err);
         this.errorMessage = 'Credenciales incorrectas.';
+        // ✅ REGISTRAR ALERTA POR INTENTO FALLIDO
+        const ipReal = 'localhost';
+
+        const alerta = new Alerta();
+        alerta.tipoActividad = 'INTENTOS_FALLIDOS';
+        alerta.descripcion = `Se han registrado múltiples intentos fallidos de inicio de sesión desde la cuenta de usuario: ${this.username}`;
+        alerta.fecha = new Date();
+        alerta.estado = 'PENDIENTE';
+        alerta.usuarioAfectado = 1; // No se conoce el ID aún
+        alerta.ipOrigen = ipReal;
+
+        this.alertaService.registrar(alerta).subscribe({
+          next: () => console.log('Alerta registrada por intento fallido'),
+          error: (err) => console.error('Error al registrar alerta:', err)
+        });
       }
     });
   }
