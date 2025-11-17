@@ -1,199 +1,137 @@
-
 .alertas-container {
-  padding: 40px;
+  padding: 30px 40px;
   background-color: #f5f5f5;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
-.alertas-title {
-  color: #c41e3a;
+.titulo-principal {
   font-size: 36px;
   font-weight: 600;
-  margin: 0 0 30px 0;
-  letter-spacing: 0.5px;
+  color: #660708;
+  margin-bottom: 30px;
 }
 
 .filtro-section {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .filtro-label {
   display: block;
   font-size: 14px;
-  color: #333;
   font-weight: 500;
-  margin-bottom: 10px;
+  color: #333;
+  margin-bottom: 8px;
 }
 
-.search-box {
-  position: relative;
+.search-field {
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
 }
 
-.search-input {
-  width: 100%;
-  padding: 12px 16px 12px 16px;
-  border: 2px solid #ddd;
+.search-field ::ng-deep .mat-mdc-text-field-wrapper {
+  background: white;
+}
+
+.tabla-alertas {
+  background: white;
   border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.search-input:focus {
-  border-color: #c41e3a;
-}
-
-.search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  color: #999;
-  pointer-events: none;
-}
-
-.alertas-table-container {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
-.alertas-table {
+table {
   width: 100%;
-  border-collapse: collapse;
 }
 
-.alertas-table thead {
-  background-color: #f9f9f9;
+th.mat-header-cell {
+  background-color: #fafafa;
+  font-weight: 600;
+  font-size: 14px;
+  color: #666;
+  padding: 20px 24px;
   border-bottom: 2px solid #e0e0e0;
 }
 
-.alertas-table th {
-  padding: 16px;
-  text-align: left;
+td.mat-cell {
+  padding: 24px 24px;
   font-size: 14px;
-  font-weight: 600;
   color: #333;
-  letter-spacing: 0.3px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.alertas-table tbody tr {
-  border-bottom: 1px solid #e8e8e8;
+tr.mat-row {
   transition: background-color 0.2s ease;
 }
 
-.alertas-table tbody tr:hover {
-  background-color: #f9f9f9;
+tr.mat-row:hover {
+  background-color: #fafafa;
 }
 
-.alertas-table td {
-  padding: 16px;
-  font-size: 13px;
-  color: #333;
-}
-
-.col-fecha {
-  width: 200px;
-}
-
-.col-tipo {
-  width: 250px;
-}
-
-.col-estado {
-  width: 150px;
-}
-
-.col-accion {
-  width: 120px;
-  text-align: center;
-}
-
-.fecha-container {
+/* Tipo de Alerta */
+.tipo-alerta {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.tipo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.indicator {
-  width: 10px;
-  height: 10px;
+.tipo-indicador {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.indicator-intentos {
-  background-color: #c41e3a;
+.tipo-rojo {
+  background-color: #dc3545;
 }
 
-.indicator-cambio {
-  background-color: #f39c12;
+.tipo-amarillo {
+  background-color: #ffc107;
 }
 
-.indicator-usuario {
-  background-color: #27ae60;
+.tipo-verde {
+  background-color: #28a745;
 }
 
-.fecha-text {
-  font-family: 'Monaco', 'Courier New', monospace;
-  font-size: 12px;
+.tipo-texto {
+  font-size: 14px;
+  color: #333;
 }
 
-.btn-investigar {
+/* Badge Estado */
+.badge-estado {
   padding: 6px 14px;
-  background-color: #f0f0f0;
-  border: 1px solid #d0d0d0;
-  border-radius: 6px;
-  color: #666;
-  font-size: 12px;
+  border-radius: 16px;
+  font-size: 13px;
   font-weight: 500;
-  cursor: pointer;
+  display: inline-block;
+}
+
+.estado-pendiente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.estado-investigando {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.estado-resuelto {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Botón Investigar */
+.btn-investigar {
+  color: #666;
+  font-size: 13px;
+  text-transform: lowercase;
+  padding: 4px 16px;
+  border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .btn-investigar:hover {
-  background-color: #e8e8e8;
-  border-color: #c0c0c0;
-}
-
-.btn-investigar:active {
-  background-color: #ddd;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .alertas-container {
-    padding: 20px;
-  }
-
-  .alertas-title {
-    font-size: 28px;
-  }
-
-  .search-box {
-    max-width: 100%;
-  }
-
-  .col-fecha {
-    width: 120px;
-  }
-
-  .col-tipo {
-    width: 150px;
-  }
-
-  .col-estado {
-    width: 100px;
-  }
+  background-color: #f0f0f0;
+  color: #333;
 }

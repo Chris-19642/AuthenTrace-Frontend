@@ -1,0 +1,34 @@
+<div class="modal-container">
+  <h2 class="modal-titulo">{{formatearTitulo(data.tipoActividad)}}</h2>
+
+  <div class="modal-info">
+    <div class="info-item">
+      <span class="info-label">Fecha:</span>
+      <span class="info-valor">{{data.fecha | date:'dd/MM/yyyy, HH:mm'}}</span>
+    </div>
+
+    <div class="info-item">
+      <span class="info-label">Usuario:</span>
+      <span class="info-valor">{{data.usuarioAfectado || 'No especificado'}}</span>
+    </div>
+
+    <div class="info-item descripcion-item">
+      <span class="info-label">Descripción:</span>
+      <p class="info-descripcion">{{data.descripcion}}</p>
+    </div>
+  </div>
+
+  <div class="modal-acciones">
+    <button mat-raised-button class="btn-bloquear" (click)="bloquearCuenta()">
+      Bloquear Cuenta
+    </button>
+
+    <button mat-stroked-button class="btn-reiniciar" (click)="reiniciarContrasena()">
+      Reiniciar Contraseña
+    </button>
+
+    <button mat-stroked-button class="btn-cerrar" (click)="cerrar()">
+      Cerrar
+    </button>
+  </div>
+</div>
