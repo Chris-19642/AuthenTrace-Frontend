@@ -15,7 +15,7 @@ import { Login } from './pages/public/login/login';
 import { InicioUser } from './pages/private/user/inicio/inicio';
 import { Documentos } from './pages/private/user/documentos/documentos';
 import { Reportes } from './pages/private/user/reportes/reportes';
-import { ReporteVerificacion } from './pages/private/user/reporte-verificacion/reporte-verificacion';
+import { VerificacionReporte } from './pages/private/user/verificacion-reporte/verificacion-reporte';
 import { Grupos } from './pages/private/user/grupos/grupos';
 
 // Páginas privadas (admin)
@@ -53,7 +53,7 @@ export const routes: Routes = [
       { path: 'inicio', component: InicioUser },
       { path: 'documentos', component: Documentos },
       { path: 'reportes', component: Reportes },
-      { path: 'reporte-verificacion', component: ReporteVerificacion },
+      { path: 'verificacion-reporte', component: VerificacionReporte },
       { path: 'grupos', component: Grupos },
       { path: 'soporte', component: Soporte },
       { path: 'perfil', component: Perfil },

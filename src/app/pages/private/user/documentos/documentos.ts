@@ -1,13 +1,16 @@
 import {Component, inject} from '@angular/core';
 import {DocumentoService} from '../../../../services/documento-service';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../../services/auth-service';
 import {CommonModule} from '@angular/common';
+import {VerificacionResultado} from '../../../../model/verificacion-resultado';
+import {VerificacionService} from '../../../../services/verificacion-service';
+import {VerificacionReporte} from '../verificacion-reporte/verificacion-reporte';
 
 @Component({
   selector: 'app-documentos',
   imports: [
     CommonModule,
+    VerificacionReporte,
   ],
   templateUrl: './documentos.html',
   styleUrl: './documentos.css',
@@ -15,11 +18,14 @@ import {CommonModule} from '@angular/common';
 export class Documentos {
   documentoService = inject(DocumentoService);
   router = inject(Router);
-  auth = inject(AuthService);
+  verificarService = inject(VerificacionService);
 
   selectedFile: File | null = null;
   nombreTemporal: string | null = null;
   isDragging = false;
+
+  resultadoVerificacion: VerificacionResultado | null = null;
+  mostrarModal: boolean = false;
 
   constructor() {}
 
@@ -92,24 +98,56 @@ export class Documentos {
       return;
     }
     const idUsuario = Number(idUsuarioStr);
-    if (!idUsuario || idUsuario <= 0) {
-      alert("Id de usuario inválido. Revise el login.");
-      return;
-    }
 
-    console.log("Enviando guardarDefinitivo:", { nombreTemporal: this.nombreTemporal, idUsuario });
+    console.log("Guardando documento definitivo con:", this.nombreTemporal, idUsuario);
+
 
     this.documentoService.guardarDefinitivo(this.nombreTemporal, idUsuario)
       .subscribe({
         next: (doc) => {
-          alert("Documento guardado correctamente.");
           console.log("📄 Documento guardado:", doc);
+          alert("Documento guardado correctamente. Iniciando verificación...");
+
+          // 2️⃣ Llamar verificación usando ID del documento recién guardado
+          this.verificarService.verificarFirma(doc.id, idUsuario)
+            .subscribe({
+              next: (resultado: VerificacionResultado) => {
+                console.log("🔎 Resultado:", resultado);
+
+                this.resultadoVerificacion = {
+                  ...resultado,
+                  nombreArchivo: doc.nombreArchivo
+                };
+
+                this.mostrarModal = true;
+
+              },
+              error: (err) => {
+                console.error(err);
+                alert("Error al verificar firma.");
+              }
+            });
+
         },
         error: (err) => {
-          alert("Error al guardar documento.");
           console.error(err);
+          alert("Error al guardar el documento.");
         }
       });
   }
 
+  cerrarModal() {
+    this.mostrarModal = false;
+    this.resultadoVerificacion = null;
+    this.selectedFile = null; // para resetear lo cargado
+  }
+
+
+
+  descargarPDF(): void {
+    console.log("📥 Descargar PDF solicitado");
+    //  Aquí luego llamaremos al servicio que genera el PDF
+  }
+
 }
+

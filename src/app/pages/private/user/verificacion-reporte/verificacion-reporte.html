@@ -1,0 +1,27 @@
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-card">
+    <button type="button" class="btn-back" (click)="cerrar.emit()">←</button>
+
+    <h1 class="titulo">Reporte de Verificación</h1>
+
+    <div class="contenido">
+
+      <div class="col-img">
+        <img src="assets/img/item-reporte-verif.png" alt="Documento">
+      </div>
+
+      <div class="col-info">
+        <span class="doc-nombre">{{ nombreDocumento }}</span>
+        <span class="estado" [ngClass]="resultadoValido ? 'valido' : 'falso'">
+          {{ resultadoValido ? '✔️ Firma Auténtica' : '❌ Firma Falsa' }}
+        </span>
+        <span class="confianza">Confianza del {{ similitudPorcentaje }}%</span>
+
+        <button type="button" class="btn-pdf" (click)="descargar.emit()">
+          Descargar como PDF
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

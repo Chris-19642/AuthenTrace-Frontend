@@ -58,3 +58,13 @@
   </div>
 
 </div>
+
+<app-verificacion-reporte
+  *ngIf="mostrarModal && resultadoVerificacion"
+  [resultado]="resultadoVerificacion!"
+  [mostrarModal]="mostrarModal"
+  (cerrar)="cerrarModal()"
+  (descargar)="descargarPDF()">
+</app-verificacion-reporte>
+
+

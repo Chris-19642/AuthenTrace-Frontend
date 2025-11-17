@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Documento} from '../model/documento';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,8 +33,10 @@ export class DocumentoService {
     return this.http.post<Documento>(this.url + `/guardar/${idUsuario}`, formData);
   }
 
-  // Listar documentos por usuario
+  /*Listar documentos por usuario
   listarPorUsuario(idUsuario: number): Observable<Documento[]> {
     return this.http.get<Documento[]>(this.url + `/usuario/${idUsuario}`);
-  }
+  }*/
+
+
 }
