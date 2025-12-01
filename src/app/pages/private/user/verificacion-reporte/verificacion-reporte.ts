@@ -17,7 +17,7 @@ export class VerificacionReporte {
 
   // ► Propiedades calculadas para el HTML
   get nombreDocumento(): string {
-    return this.resultado?.nombreArchivo ?? "Documento no identificado";
+    return this.resultado?.nombreArchivo ?? "Documento";
   }
 
   get resultadoValido(): boolean {

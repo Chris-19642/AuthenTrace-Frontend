@@ -1,17 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { MatSortModule, MatSort, Sort } from '@angular/material/sort';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-
-export interface Reporte {
-  id: number;
-  nombre: string;
-  resultado: 'Válido' | 'Falso';
-  fecha: Date;
-  idDocumento?: string;
-}
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
+import {MatSortModule, MatSort, Sort} from '@angular/material/sort';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {ReporteService} from '../../../../services/reporte-service';
+import {Reporte} from '../../../../model/reporte';
 
 @Component({
   selector: 'app-reportes-uso',
@@ -19,101 +14,78 @@ export interface Reporte {
     CommonModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
     MatIconModule,
-    MatButtonModule
-  ],
+    MatButtonModule],
   templateUrl: './reportes.html',
-  styleUrl: './reportes.css',
+  styleUrls: ['./reportes.css']
 })
-export class Reportes implements OnInit {
+export class Reportes implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['icono', 'nombre', 'resultado', 'fecha', 'acciones'];
-  dataSource: MatTableDataSource<Reporte>;
+  dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  // Datos de ejemplo - Aquí conectarás con el backend
-  reportesData: Reporte[] = [
-    {
-      id: 1,
-      nombre: 'Documento 1',
-      resultado: 'Válido',
-      fecha: new Date('2024-03-15T10:30:00'),
-      idDocumento: 'DOC001'
-    },
-    {
-      id: 2,
-      nombre: 'Documento 2',
-      resultado: 'Válido',
-      fecha: new Date('2024-03-14T14:20:00'),
-      idDocumento: 'DOC002'
-    },
-    {
-      id: 3,
-      nombre: 'Documento 3',
-      resultado: 'Falso',
-      fecha: new Date('2024-03-13T09:15:00'),
-      idDocumento: 'DOC003'
-    },
-    {
-      id: 4,
-      nombre: 'Documento 4',
-      resultado: 'Válido',
-      fecha: new Date('2024-03-12T16:45:00'),
-      idDocumento: 'DOC004'
-    }
-  ];
+  mostrarModal = false;
+  reporteSeleccionado: any;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(this.reportesData);
-  }
+  constructor(private reportesService: ReporteService) {}
 
   ngOnInit(): void {
-    // Aquí llamarías al servicio del backend
-    // this.cargarReportes();
+    this.cargarReportesPorUsuario();
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
-  // Método para cargar reportes desde el backend (a implementar)
-  cargarReportes(): void {
-    // TODO: Conectar con el backend
-    // Endpoint: GET /api/reportes/lista
-    // this.reportesService.getReportes().subscribe(
-    //   (data: Reporte[]) => {
-    //     this.dataSource.data = data;
-    //   }
-    // );
+  cargarReportesPorUsuario(): void {
+    const idUsuarioStr = localStorage.getItem('idUsuario');
+    if (!idUsuarioStr) return;
+    const idUsuario = Number(idUsuarioStr);
+
+    this.reportesService.getReportesPorUsuario(idUsuario).subscribe({
+      next: (data: Reporte[]) => {
+        this.dataSource.data = data.map(r => ({
+          ...r,
+          nombre: `Documento ${r.idDocumento}`,
+          resultado: r.estadoFirma,
+          fecha: new Date(r.fechaGeneracion)
+        }));
+      },
+      error: err => console.error('Error cargando reportes', err)
+    });
   }
 
-  // Método para cargar reportes por usuario (a implementar)
-  cargarReportesPorUsuario(idUsuario: string): void {
-    // TODO: Conectar con el backend
-    // Endpoint: GET /api/reportes/usuario/{idUsuario}
+  verDetalle(reporte: any): void {
+    this.reporteSeleccionado = reporte;
+    this.mostrarModal = true;
   }
 
-  // Método para cargar reporte por documento (a implementar)
-  cargarReportePorDocumento(idDocumento: string): void {
-    // TODO: Conectar con el backend
-    // Endpoint: GET /api/reportes/documento/{idDocumento}
+  cerrarModal(): void {
+    this.mostrarModal = false;
+    this.reporteSeleccionado = null;
   }
 
-  verDetalle(reporte: Reporte): void {
-    console.log('Ver detalle del reporte:', reporte);
-    // TODO: Implementar navegación o modal con detalles
-    // Aquí podrías abrir un diálogo con información detallada
-    // incluyendo discrepancias si resultado es 'Falso'
-  }
-
-  descargarReporte(reporte: Reporte): void {
-    console.log('Descargar reporte:', reporte);
-    // TODO: Implementar descarga del reporte en PDF
-    // this.reportesService.descargarReporte(reporte.id).subscribe();
+  descargarReporte(reporte: any): void {
+    if (!reporte.id) return;
+    this.reportesService.descargarReporte(reporte.id).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `reporte_${reporte.id}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: err => console.error('Error descargando PDF', err)
+    });
   }
 
   sortData(sort: Sort): void {
-    const data = this.reportesData.slice();
+    const data = this.dataSource.data.slice();
     if (!sort.active || sort.direction === '') {
       this.dataSource.data = data;
       return;
@@ -122,14 +94,10 @@ export class Reportes implements OnInit {
     this.dataSource.data = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'nombre':
-          return this.compare(a.nombre, b.nombre, isAsc);
-        case 'resultado':
-          return this.compare(a.resultado, b.resultado, isAsc);
-        case 'fecha':
-          return this.compare(a.fecha.getTime(), b.fecha.getTime(), isAsc);
-        default:
-          return 0;
+        case 'nombre': return this.compare(a.nombre, b.nombre, isAsc);
+        case 'resultado': return this.compare(a.resultado, b.resultado, isAsc);
+        case 'fecha': return this.compare(a.fecha.getTime(), b.fecha.getTime(), isAsc);
+        default: return 0;
       }
     });
   }

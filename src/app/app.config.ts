@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideNativeDateAdapter(),

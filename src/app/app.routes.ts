@@ -12,7 +12,7 @@ import { Soporte } from './pages/public/soporte/soporte';
 import { Login } from './pages/public/login/login';
 
 // Páginas privadas (usuario)
-import { InicioUser } from './pages/private/user/inicio/inicio';
+import { InicioUser } from './pages/private/user/inicio-user/inicio-user';
 import { Documentos } from './pages/private/user/documentos/documentos';
 import { Reportes } from './pages/private/user/reportes/reportes';
 import { VerificacionReporte } from './pages/private/user/verificacion-reporte/verificacion-reporte';
@@ -50,14 +50,14 @@ export const routes: Routes = [
     path: 'user',
     component: PrivateLayout,
     children: [
-      { path: 'inicio', component: InicioUser },
+      { path: 'inicio-user', component: InicioUser },
       { path: 'documentos', component: Documentos },
       { path: 'reportes', component: Reportes },
       { path: 'verificacion-reporte', component: VerificacionReporte },
       { path: 'grupos', component: Grupos },
       { path: 'soporte', component: Soporte },
       { path: 'perfil', component: Perfil },
-      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: '', redirectTo: 'inicio-user', pathMatch: 'full' },
     ],
   },
   {

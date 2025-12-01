@@ -1,0 +1,56 @@
+<div class="dashboard">
+
+  <h1 class="titulo">Bienvenido {{ nombreUsuario }}</h1>
+
+  <div class="cards-container">
+
+    <div class="card-documentos">
+      <h2>Documentos subidos</h2>
+      <p class="cantidad">{{ cantidadDocumentos }}</p>
+    </div>
+
+    <div class="card-chart">
+      <h2>Estado de firmas (%)</h2>
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [type]="pieChartType"
+        [options]="pieChartOptions"
+      ></canvas>
+    </div>
+
+  </div>
+
+  <h2 class="subtitulo-reportes">Últimos reportes</h2>
+
+  <div class="lista-reportes">
+    <div class="reporte-item" *ngFor="let r of ultimosReportes">
+      <img src="assets/img/firma_reporte.svg" class="icono-reporte">
+      <p class="nombre">Documento {{ r.idDocumento }}</p>
+      <span class="estado" [ngClass]="estadoClase(r.estadoFirma)">
+        {{ r.estadoFirma }}
+      </span>
+      <span class="fecha">{{ r.fechaGeneracion | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <button class="btn-ver" (click)="abrirReporte(r)">Ver</button>
+    </div>
+  </div>
+
+  <a class="ver-mas" [routerLink]="['/user/reportes']" >Ver más</a>
+
+  <!-- Modal -->
+  <div *ngIf="mostrarModal" class="modal-backdrop">
+    <div class="modal-content">
+      <h2>Detalle del Reporte</h2>
+      <p><strong>ID Reporte:</strong> {{ reporteSeleccionado?.id }}</p>
+      <p><strong>ID Usuario:</strong> {{ reporteSeleccionado?.idUsuario }}</p>
+      <p><strong>ID Documento:</strong> {{ reporteSeleccionado?.idDocumento }}</p>
+      <p><strong>Resultado:</strong> {{ reporteSeleccionado?.estadoFirma }}</p>
+      <p><strong>Fecha de Generación:</strong> {{ reporteSeleccionado?.fecha | date:'dd/MM/yyyy HH:mm' }}</p>
+      <div class="modal-footer">
+        <button mat-button (click)="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+</div>

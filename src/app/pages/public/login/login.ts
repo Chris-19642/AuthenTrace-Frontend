@@ -67,8 +67,8 @@ export class Login {
           console.log('Redirigiendo a /admin/inicio');
           this.router.navigate(['/admin/inicio']);
         } else if (roles.includes('ROLE_USER')) {
-          console.log('Redirigiendo a /user/inicio');
-          this.router.navigate(['/user/inicio']);
+          console.log('Redirigiendo a /user/inicio-user');
+          this.router.navigate(['/user/inicio-user']);
         } else {
           this.errorMessage = 'Rol desconocido.';
         }

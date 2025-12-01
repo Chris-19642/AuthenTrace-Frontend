@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-inicio',
+  selector: 'app-inicio-user',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './inicio.html',

@@ -14,7 +14,7 @@
     <!-- Usuario Section -->
     <ul *ngIf="rol === 'USER'">
       <li>
-        <a [routerLink]="['/user/inicio']"
+        <a [routerLink]="['/user/inicio-user']"
            routerLinkActive="active"
            class="menu-item">
           <svg width="39" height="43" viewBox="0 0 39 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@
     <!-- Admin Section -->
     <ul *ngIf="rol === 'ADMIN'">
       <li>
-        <a [routerLink]="['/admin/inicio']"
+        <a [routerLink]="['/admin/inicio-user']"
            routerLinkActive="active"
            class="menu-item">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
