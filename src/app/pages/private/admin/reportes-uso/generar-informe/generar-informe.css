@@ -1,0 +1,205 @@
+.generar-informe-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.back-button {
+  color: #c41e3a !important;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #c41e3a;
+  margin: 0;
+}
+
+/* Card de fecha */
+.date-card {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.date-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.date-field {
+  width: 100%;
+  max-width: 400px;
+}
+
+.date-field ::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: white;
+}
+
+.date-field ::ng-deep .mat-datepicker-toggle {
+  color: #c41e3a;
+}
+
+.confirm-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-button {
+  background-color: #c41e3a !important;
+  color: white !important;
+  padding: 0.75rem 2rem !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  box-shadow: 0 2px 4px rgba(196, 30, 58, 0.3) !important;
+  transition: all 0.3s ease !important;
+  min-width: 300px;
+}
+
+.confirm-button:hover:not(:disabled) {
+  background-color: #a01828 !important;
+  box-shadow: 0 4px 8px rgba(196, 30, 58, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.confirm-button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+}
+
+/* Card de informes */
+.informes-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.informes-card mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #c41e3a;
+  margin-bottom: 1rem;
+}
+
+.informes-table {
+  width: 100%;
+  background-color: transparent;
+}
+
+.informes-table th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #333;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+.informes-table td {
+  padding: 1rem;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+.informes-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Badge de estado */
+.estado-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.estado-badge.listo {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado-badge.proceso {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Botón de descarga */
+.download-button {
+  background-color: #d4a574 !important;
+  color: white !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.download-button:hover:not(:disabled) {
+  background-color: #c49563 !important;
+  transform: scale(1.05);
+}
+
+.download-button:disabled {
+  background-color: #e0e0e0 !important;
+  color: #999 !important;
+  cursor: not-allowed;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .generar-informe-container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .date-field {
+    max-width: 100%;
+  }
+
+  .confirm-button {
+    min-width: 100%;
+  }
+
+  .informes-table th,
+  .informes-table td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .estado-badge {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+/* Personalización del datepicker */
+::ng-deep .mat-datepicker-content {
+  background-color: #fce4ec !important;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #c41e3a !important;
+  color: white !important;
+}
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #c41e3a !important;
+}

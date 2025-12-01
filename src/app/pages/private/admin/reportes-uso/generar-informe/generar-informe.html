@@ -1,0 +1,87 @@
+<div class="generar-informe-container">
+
+  <!-- Header con botón volver -->
+  <div class="header">
+    <button mat-icon-button class="back-button" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="title">Informe mensual</h1>
+  </div>
+
+  <!-- Selector de fecha -->
+  <mat-card class="date-card">
+    <mat-card-content>
+      <div class="date-selector">
+        <mat-form-field appearance="outline" class="date-field">
+          <mat-label>Fecha</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="fechaSeleccionada"
+            placeholder="dd/mm/yyyy"
+            readonly
+          >
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="confirm-button-container">
+        <button
+          mat-raised-button
+          class="confirm-button"
+          (click)="confirmarGeneracion()"
+          [disabled]="generandoInforme"
+        >
+          {{ generandoInforme ? 'Generando...' : 'Confirmar generación de informe' }}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabla de informes generados -->
+  <mat-card class="informes-card">
+    <mat-card-header>
+      <mat-card-title>Informes generados</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="informesGenerados" class="informes-table">
+
+        <!-- Mes/Año Column -->
+        <ng-container matColumnDef="mesAnio">
+          <th mat-header-cell *matHeaderCellDef>Mes/Año</th>
+          <td mat-cell *matCellDef="let element">{{ element.mesAnio }}</td>
+        </ng-container>
+
+        <!-- Estado Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">
+            <span [class]="'estado-badge ' + (element.estado === 'Listo' ? 'listo' : 'proceso')">
+              {{ element.estado }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Descargar Column -->
+        <ng-container matColumnDef="descargar">
+          <th mat-header-cell *matHeaderCellDef>Descargar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-button
+              class="download-button"
+              (click)="descargarPDF(element)"
+              [disabled]="element.estado !== 'Listo'"
+            >
+              PDF
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+</div>

@@ -1,1 +1,73 @@
-<p>reportes works!</p>
+<div class="reportes-container">
+
+  <!-- Actividad de usuarios -->
+  <mat-card class="chart-card">
+    <mat-card-header>
+      <mat-card-title>Actividad de usuarios</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="chart-container">
+        <div class="chart-y-axis">
+          <span>80</span>
+          <span>60</span>
+          <span>40</span>
+          <span>20</span>
+          <span>0</span>
+        </div>
+        <div class="chart-area">
+          <svg class="line-chart" viewBox="0 0 700 200" preserveAspectRatio="none">
+            <polyline
+              fill="none"
+              stroke="#4a0000"
+              stroke-width="2"
+              points="0,150 100,110 200,75 300,135 400,50 500,155 600,25 700,10"
+            />
+          </svg>
+          <div class="chart-x-axis">
+            <span *ngFor="let data of actividadData">{{ data.label }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Información de acceso -->
+  <mat-card class="access-card">
+    <mat-card-header>
+      <mat-card-title>Información de acceso</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="sesionesRecientes" class="access-table">
+
+        <!-- Usuario Column -->
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <td mat-cell *matCellDef="let element">{{ element.usuario }}</td>
+        </ng-container>
+
+        <!-- IP Column -->
+        <ng-container matColumnDef="ip">
+          <th mat-header-cell *matHeaderCellDef>IP</th>
+          <td mat-cell *matCellDef="let element">{{ element.ipOrigen }}</td>
+        </ng-container>
+
+        <!-- Navegador Column -->
+        <ng-container matColumnDef="navegador">
+          <th mat-header-cell *matHeaderCellDef>Navegador</th>
+          <td mat-cell *matCellDef="let element">{{ element.navegador }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Botón para generar informe -->
+  <div class="action-container">
+    <button mat-raised-button class="generate-button" (click)="irAGenerarInforme()">
+      Generar informe mensual
+    </button>
+  </div>
+
+</div>

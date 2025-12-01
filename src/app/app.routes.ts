@@ -29,6 +29,7 @@ import {RecuperarContrasenha} from './pages/public/recuperar-contrasenha/recuper
 import {ReiniciarContrasenha} from './pages/public/reiniciar-contrasenha/reiniciar-contrasenha';
 import {IaRotrot} from './pages/public/ia-rotrot/ia-rotrot';
 import {Perfil} from './pages/private/user/perfil/perfil';
+import {GenerarInformeComponent} from './pages/private/admin/reportes-uso/generar-informe/generar-informe';
 
 export const routes: Routes = [
   {
@@ -67,6 +68,7 @@ export const routes: Routes = [
       { path: 'inicio', component: InicioComponent },
       { path: 'actualizaciones/programar', component: Actualizaciones },
       { path: 'reportes-uso', component: ReportesUso },
+      { path: 'reportes-uso/informe-mensual', component: GenerarInformeComponent },
       { path: 'alertas', component: AlertasComponent },
       { path: 'accesos', component: Accesos },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
